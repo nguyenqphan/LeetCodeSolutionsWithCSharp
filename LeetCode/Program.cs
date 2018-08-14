@@ -7,12 +7,17 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            
+
+            int num1 = 1234;
+            int num2 = 4324;
+
+            Console.WriteLine(Reverse(num1));
+            Console.WriteLine(Reverse(num2));
          
         }
 
 
-        /* TWO SUME
+        /* TWO SUM
          * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
         You may assume that each input would have exactly one solution, and you may not use the same element twice.*/
@@ -39,6 +44,25 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        public static int Reverse(int x)
+        {
+            int rev = 0;
+            int remaind;
+            while (x != 0)
+            {
+
+                remaind = x % 10;
+                x /= 10;
+
+                if (rev > Int32.MaxValue / 10 || (rev == Int32.MaxValue / 10 && remaind > 7)) return 0;
+                if (rev < Int32.MinValue / 10 || rev == Int32.MinValue / 10 && remaind < -8) return 0;
+                rev = rev * 10 + remaind;
+
+            }
+
+            return rev;
         }
 
     }
