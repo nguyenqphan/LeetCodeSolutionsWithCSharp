@@ -8,14 +8,13 @@ namespace LeetCode
         static void Main(string[] args)
         {
 
-            int num1 = 1234;
+            int num1 = 1221;
             int num2 = 4324;
 
-            Console.WriteLine(Reverse(num1));
-            Console.WriteLine(Reverse(num2));
+            Console.WriteLine(IsPalindrome(num1));
+            Console.WriteLine(IsPalindrome(num2));
          
         }
-
 
         /* TWO SUM
          * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -46,6 +45,7 @@ namespace LeetCode
             return result;
         }
 
+        //REVERSE AN 32 BIT INTEGER
         public static int Reverse(int x)
         {
             int rev = 0;
@@ -65,6 +65,30 @@ namespace LeetCode
             return rev;
         }
 
+
+        //IS A NUMBER A PALLINDROME
+        public static bool IsPalindrome(int x)
+        {
+            if (x < 0)
+                return false;
+            int reverse = 0;
+            int remaind = 0;
+            int temp = x;
+
+            while (temp != 0)
+            {
+                remaind = temp % 10;
+                temp = temp / 10;
+
+                reverse = reverse * 10 + remaind;
+            }
+
+            if (reverse == x)
+                return true;
+            else
+                return false;
+        }
+    
     }
 
 
