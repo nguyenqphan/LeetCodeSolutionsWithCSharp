@@ -8,11 +8,11 @@ namespace LeetCode
         static void Main(string[] args)
         {
 
-            int num1 = 1221;
-            int num2 = 4324;
+            string s1 = "IX";
+            string s2 = "LVIII";
 
-            Console.WriteLine(IsPalindrome(num1));
-            Console.WriteLine(IsPalindrome(num2));
+            Console.WriteLine(RomanToInt(s1));
+            Console.WriteLine(RomanToInt(s2));
          
         }
 
@@ -88,6 +88,38 @@ namespace LeetCode
             else
                 return false;
         }
+    
+        //CONVERT A ROMAN TO INTEGER
+        public static int RomanToInt(string s) {
+        
+        Dictionary<char, int> dic = new Dictionary<char, int>();
+        dic.Add('M', 1000);
+         dic.Add('D', 500);
+         dic.Add('C', 100);
+         dic.Add('L', 50);
+         dic.Add('X', 10);
+         dic.Add('V', 5);
+         dic.Add('I', 1);
+        
+        char[] roman = s.ToCharArray();
+        int num = 0;
+        int temp = dic['M'];
+        for(int i = 0; i < roman.Length; i++)
+        {
+            num += dic[roman[i]] ;
+            
+            if(temp < dic[roman[i]])
+            {
+                num -= temp * 2;
+                Console.WriteLine(num);
+            }
+            
+            temp = dic[roman[i]];          
+        }
+         
+        return num;
+    }
+    
     
     }
 
