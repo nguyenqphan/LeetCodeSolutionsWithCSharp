@@ -8,11 +8,11 @@ namespace LeetCode
         static void Main(string[] args)
         {
 
-            string s1 = "IX";
-            string s2 = "LVIII";
+            string[] strs = new string[]{"flower", "flow", "flight"};
+            string[] strs2 = new string[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
-            Console.WriteLine(RomanToInt(s1));
-            Console.WriteLine(RomanToInt(s2));
+            Console.WriteLine(LongestCommonPrefix(strs));
+            Console.WriteLine(LongestCommonPrefix(strs2));
          
         }
 
@@ -111,7 +111,6 @@ namespace LeetCode
             if(temp < dic[roman[i]])
             {
                 num -= temp * 2;
-                Console.WriteLine(num);
             }
             
             temp = dic[roman[i]];          
@@ -120,7 +119,30 @@ namespace LeetCode
         return num;
     }
     
-    
+        //LONGEST COMMON PREFIX STRING AMONGST AN ARRAY OF STRINGS
+        public static string LongestCommonPrefix(string[] strs)
+        {
+
+            if (strs == null || strs.Length == 0)
+                return "";
+
+
+            for (int i = 0; i < strs[0].Length; i++)
+            {
+                string temp = strs[0];
+                char c = temp[i];
+                for (int j = 1; j < strs.Length; j++)
+                {
+                    string current = strs[j];
+                    if (i == current.Length || c != current[i])
+                    {
+                        return temp.Substring(0, i);
+                    }
+                }
+            }
+
+            return strs[0];
+        }
     }
 
 
