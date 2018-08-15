@@ -8,11 +8,28 @@ namespace LeetCode
         static void Main(string[] args)
         {
 
-            string[] strs = new string[]{"flower", "flow", "flight"};
-            string[] strs2 = new string[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+            ListNode node1 = new ListNode(1);
+            ListNode node2 = new ListNode(2);
+            ListNode node3 = new ListNode(4);
 
-            Console.WriteLine(LongestCommonPrefix(strs));
-            Console.WriteLine(LongestCommonPrefix(strs2));
+            node1.next = node2;
+            node2.next = node3;
+            node3.next = null;
+
+            ListNode node4 = new ListNode(1);
+            ListNode node5 = new ListNode(3);
+            ListNode node6 = new ListNode(4);
+
+            node4.next = node5;
+            node5.next = node6;
+            node6.next = null;
+
+            ListNode newHead = MergeTwoLists(node1, node4);
+            while(newHead != null)
+            {
+                Console.WriteLine(newHead.val);
+                newHead = newHead.next;
+            }
          
         }
 
@@ -142,6 +159,111 @@ namespace LeetCode
             }
 
             return strs[0];
+        }
+
+
+        //VALID PARENTHESES
+        public static bool IsValid(string s)
+        {
+
+            if (s == null) return true;
+
+            Stack<char> chars = new Stack<char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+                {
+                    chars.Push(s[i]);
+                }
+                else
+                {
+                    if (chars.Count == 0)
+                        return false;
+
+                    char temp = chars.Pop();
+                    if (s[i] == ')' && temp != '(')
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        if (s[i] == '}' && temp != '{')
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            if (s[i] == ']' && temp != '[')
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (chars.Count != 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        //MERGE TWO SORTED LINKED-LIST
+        public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
+        {
+
+            if (l1 == null)
+                return l2;
+            if (l2 == null)
+                return l1;
+
+            ListNode head;
+            ListNode current;
+
+            if (l1.val <= l2.val)
+            {
+                head = l1;
+                l1 = head.next;
+                current = head;
+            }
+            else
+            {
+                head = l2;
+                l2 = head.next;
+                current = head;
+            }
+
+            while (l1 != null && l2 != null)
+            {
+                if (l1.val <= l2.val)
+                {
+                    current.next = l1;
+                    current = l1;
+                    l1 = l1.next;
+                }
+                else
+                {
+                    current.next = l2;
+                    current = l2;
+                    l2 = l2.next;
+                }
+            }
+
+            if (l2 == null)
+            {
+                current.next = l1;
+            }
+
+            if (l1 == null)
+            {
+                current.next = l2;
+            }
+
+            return head;
+
         }
     }
 

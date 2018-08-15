@@ -1,12 +1,15 @@
 ﻿<Properties StartupConfiguration="{6FA780B4-A94D-469E-B0D1-7EB5FAAAA71C}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="LeetCode/Program.cs">
     <Files>
-      <File FileName="LeetCode/Program.cs" Line="2" Column="1" />
+      <File FileName="LeetCode/Program.cs" Line="31" Column="40" />
+      <File FileName="LeetCode/ListNode.cs" Line="5" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/nguyenphan/Projects/LeetCode/LeetCode/EmptyCSharpFile.cs" relfile="LeetCode/EmptyCSharpFile.cs" line="1" column="5" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
