@@ -5,7 +5,7 @@ namespace LeetCode
 {
     class Program
     {
-        static void Main(string[] args)
+    static void Main(string[] args)
         {
 
             ListNode node1 = new ListNode(1);
@@ -265,6 +265,50 @@ namespace LeetCode
             return head;
 
         }
+   
+        //NON-DECREASING ARRAY
+        /*Given an array with n integers, your task is to check if it could become non-decreasing by modifying at most 1 element.
+        We define an array is non-decreasing if array[i] <= array[i + 1] holds for every i(1 <= i<n).*/
+        public static bool CheckPossibility(int[] nums)
+        {
+            if (nums.Length <= 2)
+            {
+                return true;
+            }
+            int count = 1;
+
+
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (nums[i] > nums[i + 1])
+                {
+                    if (i == 0)
+                    {
+                        count--;
+                    }
+                    else
+                    {
+                        if (nums[i - 1] <= nums[i + 1])
+                        {
+                            count--;
+                        }
+                        else
+                        {
+                            count--;
+                            nums[i + 1] = nums[i];
+                        }
+                    }
+
+                    if (count == -1)
+                    {
+                        return false;
+                    }
+                }
+
+            }
+            return true;
+        }
+
     }
 
 
