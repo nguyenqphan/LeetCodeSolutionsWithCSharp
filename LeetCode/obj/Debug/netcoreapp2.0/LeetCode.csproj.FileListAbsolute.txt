@@ -3,9 +3,9 @@
 /Users/nguyenphan/Projects/LeetCode/LeetCode/bin/Debug/netcoreapp2.0/LeetCode.runtimeconfig.dev.json
 /Users/nguyenphan/Projects/LeetCode/LeetCode/bin/Debug/netcoreapp2.0/LeetCode.dll
 /Users/nguyenphan/Projects/LeetCode/LeetCode/bin/Debug/netcoreapp2.0/LeetCode.pdb
-/Users/nguyenphan/Projects/LeetCode/LeetCode/obj/Debug/netcoreapp2.0/LeetCode.csprojResolveAssemblyReference.cache
 /Users/nguyenphan/Projects/LeetCode/LeetCode/obj/Debug/netcoreapp2.0/LeetCode.csproj.CoreCompileInputs.cache
 /Users/nguyenphan/Projects/LeetCode/LeetCode/obj/Debug/netcoreapp2.0/LeetCode.AssemblyInfoInputs.cache
 /Users/nguyenphan/Projects/LeetCode/LeetCode/obj/Debug/netcoreapp2.0/LeetCode.AssemblyInfo.cs
 /Users/nguyenphan/Projects/LeetCode/LeetCode/obj/Debug/netcoreapp2.0/LeetCode.dll
 /Users/nguyenphan/Projects/LeetCode/LeetCode/obj/Debug/netcoreapp2.0/LeetCode.pdb
+/Users/nguyenphan/Projects/LeetCode/LeetCode/obj/Debug/netcoreapp2.0/LeetCode.csprojAssemblyReference.cache

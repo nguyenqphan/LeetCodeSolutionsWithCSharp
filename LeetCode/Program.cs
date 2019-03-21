@@ -5,39 +5,22 @@ namespace LeetCode
 {
     class Program
     {
-    static void Main(string[] args)
+        static void Main(string[] args)
         {
+            int[] numbers = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+            int k = Convert.ToInt32(Console.ReadLine());
 
-            ListNode node1 = new ListNode(1);
-            ListNode node2 = new ListNode(2);
-            ListNode node3 = new ListNode(4);
+            Rotate(numbers, k);
 
-            node1.next = node2;
-            node2.next = node3;
-            node3.next = null;
 
-            ListNode node4 = new ListNode(1);
-            ListNode node5 = new ListNode(3);
-            ListNode node6 = new ListNode(4);
 
-            node4.next = node5;
-            node5.next = node6;
-            node6.next = null;
-
-            ListNode newHead = MergeTwoLists(node1, node4);
-            while(newHead != null)
-            {
-                Console.WriteLine(newHead.val);
-                newHead = newHead.next;
-            }
-         
         }
 
         /* TWO SUM
          * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
         You may assume that each input would have exactly one solution, and you may not use the same element twice.*/
-       
+
         static int[] TwoSum(int[] nums, int target)
         {
 
@@ -105,37 +88,38 @@ namespace LeetCode
             else
                 return false;
         }
-    
+
         //CONVERT A ROMAN TO INTEGER
-        public static int RomanToInt(string s) {
-        
-        Dictionary<char, int> dic = new Dictionary<char, int>();
-        dic.Add('M', 1000);
-         dic.Add('D', 500);
-         dic.Add('C', 100);
-         dic.Add('L', 50);
-         dic.Add('X', 10);
-         dic.Add('V', 5);
-         dic.Add('I', 1);
-        
-        char[] roman = s.ToCharArray();
-        int num = 0;
-        int temp = dic['M'];
-        for(int i = 0; i < roman.Length; i++)
+        public static int RomanToInt(string s)
         {
-            num += dic[roman[i]] ;
-            
-            if(temp < dic[roman[i]])
+
+            Dictionary<char, int> dic = new Dictionary<char, int>();
+            dic.Add('M', 1000);
+            dic.Add('D', 500);
+            dic.Add('C', 100);
+            dic.Add('L', 50);
+            dic.Add('X', 10);
+            dic.Add('V', 5);
+            dic.Add('I', 1);
+
+            char[] roman = s.ToCharArray();
+            int num = 0;
+            int temp = dic['M'];
+            for (int i = 0; i < roman.Length; i++)
             {
-                num -= temp * 2;
+                num += dic[roman[i]];
+
+                if (temp < dic[roman[i]])
+                {
+                    num -= temp * 2;
+                }
+
+                temp = dic[roman[i]];
             }
-            
-            temp = dic[roman[i]];          
+
+            return num;
         }
-         
-        return num;
-    }
-    
+
         //LONGEST COMMON PREFIX STRING AMONGST AN ARRAY OF STRINGS
         public static string LongestCommonPrefix(string[] strs)
         {
@@ -265,7 +249,7 @@ namespace LeetCode
             return head;
 
         }
-   
+
         //NON-DECREASING ARRAY
         /*Given an array with n integers, your task is to check if it could become non-decreasing by modifying at most 1 element.
         We define an array is non-decreasing if array[i] <= array[i + 1] holds for every i(1 <= i<n).*/
@@ -309,7 +293,55 @@ namespace LeetCode
             return true;
         }
 
+        //ROTATE ARRAY
+        //Given an array, rotate the array to the right by k steps, where k is non-negative.
+        public static void Rotate(int[] nums, int k)
+        {
+            if (k == 0 || nums.Length == 1)
+            {
+                return;
+            }
+
+            k = k % nums.Length;
+            int numOfSwap = nums.Length;
+
+
+            int nextIndex = 0;
+            int nextValue;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int currentValue = nums[i];
+                nextIndex = i;
+                while (numOfSwap > 0)
+                {
+
+                    if (k + nextIndex >= nums.Length)
+                    {
+                        nextIndex = k + nextIndex - nums.Length;
+                    }
+                    else
+                    {
+                        nextIndex = k + nextIndex;
+                    }
+
+                    nextValue = nums[nextIndex];
+                    nums[nextIndex] = currentValue;
+                    currentValue = nextValue;
+
+                    numOfSwap--;
+
+                    if (nextIndex == i)
+                        break;
+                }
+
+                if (numOfSwap == 0)
+                {
+                    break;
+                }
+            }
+
+        }
+
+
     }
-
-
-}
