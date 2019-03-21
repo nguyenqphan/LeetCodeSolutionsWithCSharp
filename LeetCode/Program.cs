@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+
 
 namespace LeetCode
 {
@@ -7,13 +9,8 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            int[] numbers = new int[] { 1, 2, 3, 4, 5, 6, 7 };
-            int k = Convert.ToInt32(Console.ReadLine());
-
-            Rotate(numbers, k);
-
-
-
+            string mystring = "PO,,,,,P  ,,,  ....";
+            Console.WriteLine(IsPalindrome(mystring));
         }
 
         /* TWO SUM
@@ -343,5 +340,43 @@ namespace LeetCode
 
         }
 
+        public static bool IsPalindrome(string s)
+        {
+            int length = s.Length - 1;
+          
+            for(int i = 0; i < length; i++ )
+            {
+                if (!IsValidCharacter(s[i]))
+                    continue;
+
+                while(length != i)
+                {
+                    if (IsValidCharacter(s[length]))
+                        break;
+                    length--;
+                }
+
+                if(Char.ToLower(s[i]) != Char.ToLower(s[length]))
+                {
+                    return false;
+                } 
+                else
+                {
+                    length--;
+                }
+
+            }
+
+
+            return true;
+
+        }
+
+        public static bool IsValidCharacter(char c)
+        {
+
+            return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c <= 0 && c >= 9);
+        }
 
     }
+}
