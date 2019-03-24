@@ -9,8 +9,12 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            string mystring = "PO,,,,,P  ,,,  ....";
-            Console.WriteLine(IsPalindrome(mystring));
+            uint num = 11;
+            //num = Reverse32Bits(num);
+            num = reverseBits(num);
+
+            Console.WriteLine(num);
+
         }
 
         /* TWO SUM
@@ -378,5 +382,29 @@ namespace LeetCode
             return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c <= 0 && c >= 9);
         }
 
-    }
-}
+        //Reverse bits of a given 32 bits unsigned integer.
+        public static uint Reverse32Bits(uint num)
+        { 
+            uint result = 0;
+
+            for(int i = 0; i < 32; i++)
+            {
+
+                result = result << 1;
+                if(num % 2 == 0)
+                {
+                    result = result | 0;
+                }
+                else
+                {
+                    result = result | 1;
+                }
+
+                num /=  2;
+            }
+
+            return result;
+        }
+
+    }//close program class
+}//close name space
