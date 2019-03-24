@@ -11,7 +11,7 @@ namespace LeetCode
         {
             uint num = 11;
             //num = Reverse32Bits(num);
-            num = reverseBits(num);
+            num = Reverse32Bits(num);
 
             Console.WriteLine(num);
 
