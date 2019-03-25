@@ -9,11 +9,18 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            uint num = 11;
-            //num = Reverse32Bits(num);
-            num = Reverse32Bits(num);
+            //int num = 2147395600;
+            int num2 = 2147395600;
 
-            Console.WriteLine(num);
+            //Console.WriteLine(46340 * 46340);
+
+
+            //Console.ReadLine();
+            //num = MySqrt(num);
+            num2 = MySqrt2(num2);
+
+            //Console.WriteLine(num);
+            Console.WriteLine(num2);
 
         }
 
@@ -404,6 +411,73 @@ namespace LeetCode
             }
 
             return result;
+        }
+
+        /*
+         * Implement int sqrt(int x).
+          Compute and return the square root of x,
+          where x is guaranteed to be a non-negative integer.
+          Since the return type is an integer, the decimal digits are 
+          truncated and only the integer part of the result is returned.  
+         */
+         //O(n) runtime solution
+        public static int MySqrt(int x)
+        {
+            if (x < 1)
+                return 0;
+
+            if (x < 4)
+                return 1;
+            int i;
+            for (i = 2; i <= x / 2; i += 2)
+            {
+                if (i * i > x || i * i < 0)
+                    break;
+
+                //Console.WriteLine(i*i);
+            }
+
+            if ((i - 1) * (i - 1) > x || (i - 1) * (i - 1) < 0)
+            {
+                return i - 2;
+            }
+            else
+            {
+                return i - 1;
+            }
+        }
+
+        public static int MySqrt2(int x)
+        {
+            if (x < 1)
+                return 0;
+
+            if (x < 4)
+                return 1;
+
+            int left = 2;
+            int right = x/2;
+            int mid = (left + right) / 2;
+
+            while(true)
+            {
+                mid =  (right + left) / 2;
+
+                //not mid * mid > x to prevent overflow
+                if (mid > x/mid)
+                {
+                    right = mid -1 ;
+                   
+                }
+                else
+                {
+                    if (mid + 1 > x / (mid + 1))
+                        return mid;
+                    left = mid + 1;
+                }
+                
+            }
+
         }
 
     }//close program class
