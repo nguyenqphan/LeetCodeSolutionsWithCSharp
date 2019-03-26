@@ -9,17 +9,11 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            //int num = 2147395600;
-            int num2 = 2147395600;
-            //Console.WriteLine(46340 * 46340);
+    
+            string myString = "nguyenphan";
+            int result = FirstUniqChar(myString);
+            Console.WriteLine(result);
 
-
-            //Console.ReadLine();
-            //num = MySqrt(num);
-            num2 = MySqrt2(num2);
-
-            //Console.WriteLine(num);
-            Console.WriteLine(num2);
 
         }
 
@@ -506,5 +500,35 @@ namespace LeetCode
             return result;
         }
 
+        /*FIRST UNIQUE CHARACTER IN A STRING
+        Given a string, find the first non-repeating character in it and return it's index.
+        If it doesn't exist, return -1.
+        */
+        public static int FirstUniqChar(string s)
+        {
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+            int indexToreturn = -1;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (dict.ContainsKey(s[i]))
+                {
+                    dict[s[i]] += 1;
+                }
+                else
+                {
+                    dict.Add(s[i], 1);
+                }
+            }
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (dict[s[i]] == 1)
+                {
+                    indexToreturn = i;
+                    break;
+                }
+            }
+            return indexToreturn;
+        }
     }//close program class
 }//close name space
