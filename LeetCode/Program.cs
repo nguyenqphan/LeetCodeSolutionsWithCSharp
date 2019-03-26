@@ -9,11 +9,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-    
-            string myString = "nguyenphan";
-            int result = FirstUniqChar(myString);
-            Console.WriteLine(result);
-
+            Console.WriteLine(GetSum(5, 6));
 
         }
 
@@ -529,6 +525,31 @@ namespace LeetCode
                 }
             }
             return indexToreturn;
+        }
+        /* SUM OF TWO INTEGER
+         * Calculate the sum of two integers a and b, 
+         * but you are not allowed to use the operator + and -.
+         */
+        public static int GetSum(int a, int b)
+        {
+            if (a == 0)
+                return b;
+            if (b == 0)
+                return a;
+
+            int carry;
+
+            while(b != 0)
+            {
+                carry = a & b;
+                a = a ^ b;
+
+                b = carry << 1;
+
+                
+            }
+
+            return a; 
         }
     }//close program class
 }//close name space
