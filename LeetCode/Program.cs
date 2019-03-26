@@ -9,8 +9,10 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(GetSum(5, 6));
+            int[] num1 = new int[] { 4, 4, 5, 4};
+            int[] num2 = new int[] { 4, 4, 5, 6 };
 
+            Intersect(num1, num2);
         }
 
         /* TWO SUM
@@ -545,11 +547,42 @@ namespace LeetCode
                 a = a ^ b;
 
                 b = carry << 1;
-
-                
             }
 
             return a; 
+        }
+        /* INTERSECTION OF TWO ARRAY II
+        Given two arrays, write a function to compute their intersection.
+        */
+
+        public static int[] Intersect(int[] nums1, int[] nums2)
+        {
+            Array.Sort(nums1);
+            Array.Sort(nums2);
+
+            List<int> results = new List<int>();
+
+            int i = 0;
+            int j = 0;
+
+            while(i < nums1.Length && j < nums2.Length)
+            { 
+                if(nums1[i] == nums2[j])
+                {
+                    results.Add(nums1[i]);
+                    i++;
+                    j++;
+                }
+                else 
+                {
+                    if (nums1[i] < nums2[j])
+                        i++;
+                    else
+                        j++;
+                }
+            }
+
+            return results.ToArray();
         }
     }//close program class
 }//close name space
