@@ -11,7 +11,6 @@ namespace LeetCode
         {
             //int num = 2147395600;
             int num2 = 2147395600;
-
             //Console.WriteLine(46340 * 46340);
 
 
@@ -478,6 +477,33 @@ namespace LeetCode
                 
             }
 
+        }
+
+        /*FIZZ BUZZ
+         * Write a program that outputs the string representation of numbers from 1 to n.
+           But for multiples of three it should output “Fizz” instead of the number and for
+           the multiples of five output “Buzz”. For numbers which are multiples of both three 
+           and five output “FizzBuzz”.      
+         */
+        public IList<string> FizzBuzz(int n)
+        {
+            IList<string> result = new List<string>();
+
+            for (int i = 1; i <= n; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                    result.Add("FizzBuzz");
+                else
+                    if (i % 3 == 0)
+                    result.Add("Fizz");
+                else
+                        if (i % 5 == 0)
+                    result.Add("Buzz");
+                else
+                    result.Add(i.ToString());
+            }
+
+            return result;
         }
 
     }//close program class
