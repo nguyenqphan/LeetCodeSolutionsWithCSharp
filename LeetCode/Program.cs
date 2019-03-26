@@ -9,10 +9,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            int[] num1 = new int[] { 4, 4, 5, 4};
-            int[] num2 = new int[] { 4, 4, 5, 6 };
-
-            Intersect(num1, num2);
+            ReverseString(new char[] {'h', 'e' , 'l', 'l', 'o' });
         }
 
         /* TWO SUM
@@ -583,6 +580,25 @@ namespace LeetCode
             }
 
             return results.ToArray();
+        }
+        /* REVERSE STRING
+         * Write a function that reverses a string.
+         * The input string is given as an array of characters char[].      
+         * */
+        public static void ReverseString(char[] s)
+        {
+            int last = s.Length - 1;
+            int i = 0;
+
+            char temp;
+            while (i < s.Length / 2)
+            {
+                temp = s[i];
+                s[i] = s[last];
+                s[last] = temp;
+                last--;
+                i++;
+            }
         }
     }//close program class
 }//close name space
