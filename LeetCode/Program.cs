@@ -620,7 +620,34 @@ namespace LeetCode
             return false;
         }
 
-      
+
+        /*MOVE ZEROES
+        Given an array nums, write a function to move all 0's to the end of 
+        it while maintaining the relative order of the non-zero elements.
+        */
+        public void MoveZeroes(int[] nums)
+        {
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (nums[i] != 0)
+                    continue;
+
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[j] == 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        int temp = nums[i];
+                        nums[i] = nums[j];
+                        nums[j] = temp;
+                        break;
+                    }
+                }
+            }
+        }
 
     }//close program class
 }//close name space
