@@ -9,7 +9,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            ReverseString(new char[] {'h', 'e' , 'l', 'l', 'o' });
+           
         }
 
         /* TWO SUM
@@ -600,5 +600,27 @@ namespace LeetCode
                 i++;
             }
         }
+
+        //POWER OF THREE
+        public static bool IsPowerOfThree(int n)
+        {
+            if (n == 0)
+                return false;
+            if (n == 1)
+                return true;
+
+            while (n > 3)
+            {
+                n /= 3;
+            }
+
+            if (n == 3)
+                return true;
+
+            return false;
+        }
+
+      
+
     }//close program class
 }//close name space
