@@ -758,14 +758,27 @@ namespace LeetCode
                 f = f.next;
             }
             return true;
+
         }
 
+        private ListNode reverse(ListNode root)
+        {
+            ListNode prev = null, next = null, temp = root;
+            while (temp != null)
+            {
+                next = temp.next;
+                temp.next = prev;
+                prev = temp;
+                temp = next;
+            }
+            return prev;
+        }
 
         //MIDDLE OF THE LINED LIST
         //Given a non-empty, singly linked list with head node head, 
         //return a middle node of linked list.
         //If there are two middle nodes, return the second middle node.
-        public ListNode MiddleNode(ListNode head)
+        public static ListNode MiddleNode(ListNode head)
         {
 
             ListNode fast = head;
@@ -777,6 +790,26 @@ namespace LeetCode
             }
 
             return head;
+        }
+
+        public static ListNode ReverseList(ListNode head)
+        {
+            if (head == null)
+                return head;
+
+            ListNode temp = head;
+            ListNode pre = null;
+            ListNode curr = head;
+
+            while (curr != null)
+            {
+                temp = curr.next;
+                curr.next = pre;
+                pre = curr;
+                curr = temp;
+            }
+
+            return pre;
         }
 
     }//close program class
