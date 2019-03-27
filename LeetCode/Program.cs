@@ -812,5 +812,52 @@ namespace LeetCode
             return pre;
         }
 
+        //REMOVE DUPLICATES FROM SORTED LIST
+        public static ListNode DeleteDuplicates(ListNode head)
+        {
+            ListNode nex = null;
+            ListNode curr = head;
+
+            if (head == null)
+                return head;
+
+            while (curr != null && curr.next != null)
+            {
+                if (curr.val == curr.next.val)
+                {
+                    nex = curr.next.next;
+                    curr.next = nex;
+                }
+                else
+                {
+                    curr = curr.next;
+                }
+            }
+
+            return head;
+        }
+
+        //LINKED LIST CYCLE
+        public static bool HasCycle(ListNode head)
+        {
+            if (head == null)
+                return false;
+
+            ListNode slow = head;
+            ListNode fast = head;
+
+            while (fast != null && fast.next != null)
+            {
+                slow = slow.next;
+                fast = fast.next.next;
+
+                if (slow == fast)
+                    return true;
+
+            }
+
+            return false;
+        }
+
     }//close program class
 }//close name space
