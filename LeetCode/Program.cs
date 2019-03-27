@@ -649,5 +649,43 @@ namespace LeetCode
             }
         }
 
+        //MISSING NUMBER (not optimal)
+        /*
+        Given an array containing n distinct numbers taken from 0, 1, 2, ..., n,
+        find the one that is missing from the array.
+        */
+        public int MissingNumber(int[] nums)
+        {
+            Array.Sort(nums);
+            if (nums[0] != 0)
+                return 0;
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (nums[i] + 1 != nums[i + 1])
+                {
+                    return nums[i + 1] - 1;
+                }
+            }
+
+            return nums[nums.Length - 1] + 1;
+        }
+
+        //MISSING NUMBER (optimal)
+        /*
+        Given an array containing n distinct numbers taken from 0, 1, 2, ..., n,
+        find the one that is missing from the array.
+        */
+        public static int MissingNumber2(int[] nums)
+        {
+            int sum = nums.Length * (nums.Length + 1) / 2; //1 + 2 + 3 +.. + n = n(n+1)/2
+
+            for(int i = 0; i < nums.Length; i++)
+            {
+                sum -= nums[i];
+            }
+
+            return sum;
+        }
+
     }//close program class
 }//close name space
