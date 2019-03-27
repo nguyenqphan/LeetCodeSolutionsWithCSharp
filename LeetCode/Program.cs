@@ -687,6 +687,8 @@ namespace LeetCode
             return sum;
         }
 
+
+        //ANAGRAM
         public static bool IsAnagram(string s, string t)
         {
             if (s.Length != t.Length)
@@ -722,6 +724,39 @@ namespace LeetCode
                 }
             }
 
+            return true;
+        }
+
+
+        //PALINDROME LINKED LIST
+        public bool IsPalindrome(ListNode head)
+        {
+            if (head == null)
+                return true;
+            ListNode f = head, s = head, prev = null;
+            while (f != null && f.next != null)
+            {
+                prev = s;
+                s = s.next;
+                f = f.next.next;
+            }
+
+            //cut the list in half
+            if (prev != null)
+                prev.next = null;
+
+            f = head;
+
+            //reverse the second of of the list
+            ListNode newHead = reverse(s);
+
+            while (newHead != null && f != null)
+            {
+                if (newHead.val != f.val)
+                    return false;
+                newHead = newHead.next;
+                f = f.next;
+            }
             return true;
         }
 
