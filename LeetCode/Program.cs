@@ -9,7 +9,7 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-           
+            Console.WriteLine(IsAnagram("ab", "ba"));
         }
 
         /* TWO SUM
@@ -685,6 +685,44 @@ namespace LeetCode
             }
 
             return sum;
+        }
+
+        public static bool IsAnagram(string s, string t)
+        {
+            if (s.Length != t.Length)
+                return false;
+
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!dict.ContainsKey(s[i]))
+                {
+                    dict.Add(s[i], 1);
+                }
+                else
+                {
+                    dict[s[i]]++;
+                }
+            }
+
+            for (int j = 0; j < t.Length; j++)
+            {
+                if (!dict.ContainsKey(t[j]))
+                    return false;
+                else
+                {
+                    if (dict[t[j]] > 1)
+                        dict[t[j]]--;
+                    else
+                    {
+                        dict.Remove(t[j]);
+
+                    }
+                }
+            }
+
+            return true;
         }
 
     }//close program class
