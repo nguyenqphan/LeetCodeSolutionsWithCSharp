@@ -9,7 +9,22 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(IsAnagram("ab", "ba"));
+            ListNode node1 = new ListNode(1);
+            ListNode node2 = new ListNode(2);
+
+            ListNode head = node1;
+            ListNode pre = node1;
+
+            node1.next = node2;
+
+            pre.next = null;
+
+            while(head != null)
+            {
+                Console.WriteLine(head.val);
+                head = head.next;
+
+            }
         }
 
         /* TWO SUM
@@ -857,6 +872,46 @@ namespace LeetCode
             }
 
             return false;
+        }
+
+        public static ListNode RemoveElements(ListNode head, int val)
+        {
+            if (head == null)
+            {
+                return head;
+            }
+
+            ListNode curr = head;
+            ListNode next = head;
+            ListNode pre = head;
+
+            while (curr != null)
+            {
+                //move the head forward
+                if (head.val == val)
+                    head = head.next;
+
+                next = curr.next;
+
+                if (curr.val == val)
+                {
+                    curr.next = null;
+
+                    if (next != null)
+                        pre.next = next;
+                    else
+                        pre.next = null;
+
+                }
+                else
+                {
+                    pre = curr;
+                }
+
+                curr = next;
+            }
+
+            return head;
         }
 
     }//close program class
