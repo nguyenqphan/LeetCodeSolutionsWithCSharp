@@ -9,10 +9,49 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-
+            int[] num = new int[] { 3, 2, 3 };
+            MajorityElement(num);
         
         }
 
+        //MAJORITY ELEMENT (reference solution)
+        public int MajorityElement1(int[] nums)
+        {
+
+            Array.Sort(nums);
+            /*
+            Based on sorted array, nums[nums.length/2] must be the answer
+            Otherwise, the length requirement (>n/2) can't be satisfied
+            */
+            return nums[nums.Length / 2];
+        }
+
+        //MAJORITY ELEMENT (My solution)
+        public static int MajorityElement(int[] nums)
+        {
+
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!dict.ContainsKey(nums[i]))
+                {
+                    dict.Add(nums[i], 1);
+                }
+                else
+                {
+                    dict[nums[i]]++;
+                }
+            }
+
+            foreach (KeyValuePair<int, int> d in dict)
+            {
+                if (d.Value >= nums.Length / 2 + 1)
+                    return d.Key;
+            }
+
+            return -1;
+        }
         //EXCEL SHEET COLUMN NUMBER\
         /*
         Given a column title as appear in an Excel sheet, return its corresponding column number.
