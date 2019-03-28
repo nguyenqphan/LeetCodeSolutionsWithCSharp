@@ -13,13 +13,29 @@ namespace LeetCode
             Console.WriteLine(HammingWeight(11));
         }
 
+        //FACTORIAL TRAILING ZEROES
+        //Given an integer n, return the number of trailing zeroes in n!.
+        public int TrailingZeroes(int n)
+        {
+            int result = 0;
+
+            while (n > 0)
+            {
+                n /= 5;
+                result += n;
+            }
+
+            return result;
+        }
+
         //NUMBER OF 1 BITS
         /*
          * Write a function that takes an unsigned integer and return the number
          * of '1' bits it has (also known as the Hamming weight).      
          */
         public static int HammingWeight(uint n)
-        {            int count = 0;
+        {        
+            int count = 0;
 
             while (n > 0)
             {
