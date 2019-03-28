@@ -9,22 +9,28 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            ListNode node1 = new ListNode(1);
-            ListNode node2 = new ListNode(2);
 
-            ListNode head = node1;
-            ListNode pre = node1;
+            Console.WriteLine(HammingWeight(11));
+        }
 
-            node1.next = node2;
+        //NUMBER OF 1 BITS
+        /*
+         * Write a function that takes an unsigned integer and return the number
+         * of '1' bits it has (also known as the Hamming weight).      
+         */
+        public static int HammingWeight(uint n)
+        {            int count = 0;
 
-            pre.next = null;
-
-            while(head != null)
+            while (n > 0)
             {
-                Console.WriteLine(head.val);
-                head = head.next;
-
+                if (n % 2 != 0)
+                {
+                    count++;
+                }
+                n = n >> 1;
             }
+
+            return count;
         }
 
         /* TWO SUM
@@ -966,6 +972,7 @@ namespace LeetCode
             }
             return Math.Max(even, odd);
         }
+
 
 
     }//close program class
