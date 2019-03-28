@@ -10,9 +10,24 @@ namespace LeetCode
         static void Main(string[] args)
         {
 
-            Console.WriteLine(HammingWeight(11));
+        
         }
 
+        //EXCEL SHEET COLUMN NUMBER\
+        /*
+        Given a column title as appear in an Excel sheet, return its corresponding column number.
+        */
+        public int TitleToNumber(string s)
+        {
+            int result = 0;
+
+            foreach (char c in s)
+            {
+                result = result * 26 + c - 'A' + 1;
+            }
+
+            return result;
+        }
         //FACTORIAL TRAILING ZEROES
         //Given an integer n, return the number of trailing zeroes in n!.
         public int TrailingZeroes(int n)
