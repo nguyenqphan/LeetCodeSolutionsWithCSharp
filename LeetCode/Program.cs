@@ -9,19 +9,23 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            MinStack minStack = new MinStack();
-            minStack.Push(-2);
-            minStack.Push(0);
-            minStack.Push(-3);
+            Console.WriteLine(2 ^ 3);
+        }
 
-            //Console.WriteLine(minStack.GetMin());
+        //SINGLE NUMBER
+        //Given a non-empty array of integers,
+        //every element appears twice except for one. Find that single one.
+        public int SingleNumber(int[] nums)
+        {
 
-            minStack.Pop();
-            Console.WriteLine(minStack.Top());
-            Console.WriteLine(minStack.GetMin());
+            int result = nums[0];
 
+            for (int i = 1; i < nums.Length; i++)
+            {
+                result ^= nums[i];
+            }
 
-
+            return result;
         }
 
         //INTERSECTION OF TWO LINKED LISTS
