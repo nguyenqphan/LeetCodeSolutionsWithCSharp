@@ -9,7 +9,9 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(2 ^ 3);
+            Console.WriteLine(IsValidCharacter('0'));
+            Console.WriteLine(IsValidCharacter('P'));
+            Console.WriteLine(IsPalindrome("0P"));
         }
 
         //SINGLE NUMBER
@@ -502,8 +504,8 @@ namespace LeetCode
 
         public static bool IsValidCharacter(char c)
         {
-
-            return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c <= 0 && c >= 9);
+                
+            return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9');
         }
 
         //Reverse bits of a given 32 bits unsigned integer.
