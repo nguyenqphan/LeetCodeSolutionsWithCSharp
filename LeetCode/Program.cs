@@ -9,12 +9,32 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(IsValidCharacter('0'));
-            Console.WriteLine(IsValidCharacter('P'));
-            Console.WriteLine(IsPalindrome("0P"));
+
         }
 
-        //SINGLE NUMBER
+        //BEST TIME TO SELL AND BUY STOCK !!
+        /*Say you have an array for which the ith element is the price of a given stock on day i.
+         * Design an algorithm to find the maximum profit. 
+         * You may complete as many transactions as you like        
+        */
+        public static int MaxProfit(int[] prices)
+        {
+            int profit = 0;
+            if (prices.Length < 1)
+                return profit;
+
+            for (int i = 0; i < prices.Length - 1; i++)
+            {
+                if (prices[i] < prices[i + 1])
+                {
+                    profit += prices[i + 1] - prices[i];
+                }
+            }
+
+            return profit;
+        }
+
+        //SINGLE NUMBER  
         //Given a non-empty array of integers,
         //every element appears twice except for one. Find that single one.
         public int SingleNumber(int[] nums)
