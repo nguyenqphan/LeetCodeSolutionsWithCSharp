@@ -15,6 +15,32 @@ namespace LeetCode
 
         }
 
+        //Convert Sorted Array to Binary Search Tree
+        //Given an array where elements are sorted in ascending order,
+        //convert it to a height balanced BST.
+        public static TreeNode SortedArrayToBST(int[] nums)
+        {
+            TreeNode root = null;
+            root = BSTHelper(nums, root, 0, nums.Length - 1);
+
+            return root;
+        }
+
+        public static TreeNode BSTHelper(int[] nums, TreeNode newRoot, int start, int end)
+        {
+            if (start > end)
+                return null;
+
+            int mid = (start + end) / 2;
+
+            newRoot = new TreeNode(nums[mid]);
+            newRoot.left = BSTHelper(nums, newRoot.left, start, mid - 1);
+            newRoot.right = BSTHelper(nums, newRoot.right, mid + 1, end);
+
+            return newRoot;
+
+        }
+
         //PASCAL'S TRIANGLE
         //Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
         //In Pascal's triangle, each number is the sum of the two numbers directly above it.
