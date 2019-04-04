@@ -9,6 +9,51 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
+            int[] inte = new int[] { 2, 4, 1 };
+
+           int max =  MaxProfit2(inte);
+
+        }
+
+        //BEST TIME TO BUY AND SELL STOCK
+        /* Say you have an array for which the ith element is the price of a given stock on day i.
+         * If you were only permitted to complete at most one transaction
+         * (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.
+         * Note that you cannot sell a stock before you buy one.       
+        */
+        public static int MaxProfit2(int[] prices)
+        {
+            if (prices.Length < 2)
+                return 0;
+
+            int smallest = prices[0];
+            int largest = prices[0];
+            int max = 0;
+
+            for (int i = 1; i < prices.Length; i++)
+            {
+                if (smallest > prices[i])
+                {
+
+                    smallest = prices[i];
+                    largest = prices[i];
+                }
+
+                if (largest < prices[i])
+                {
+                    largest = prices[i];
+                }
+
+                max = Math.Max(max, largest - smallest);
+            }
+
+
+            return max;
+        }
+
+        Console.WriteLine(smallest);
+            Console.WriteLine(largest);
+            return largest - smallest > 0 ? largest - smallest : 0;
 
         }
 
