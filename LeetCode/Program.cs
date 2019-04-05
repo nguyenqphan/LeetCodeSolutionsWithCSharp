@@ -13,11 +13,20 @@ namespace LeetCode
 
             TreeNode node = SortedArrayToBST(nums);
 
-            PreOrderTraversal(node);
-            InOrderTraversal(node);
+            MaxDepth(node);
 
         }
 
+        //MAXIUM DEPTH OF BINARY TREE
+        public static int MaxDepth(TreeNode root)
+        {
+            if (root == null)
+                return 0;
+            int l = MaxDepth(root.left) + 1;
+            int r = MaxDepth(root.right) + 1;
+ 
+            return Math.Max(l,r);
+        }
         public static TreeNode PostOrderTraversal(TreeNode root)
         {
             if (root == null)
