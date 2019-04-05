@@ -9,10 +9,55 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            int[] inte = new int[] { 2, 4, 1 };
+            int[] nums = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-           int max =  MaxProfit2(inte);
+            TreeNode node = SortedArrayToBST(nums);
 
+            PreOrderTraversal(node);
+            InOrderTraversal(node);
+
+        }
+
+        public static TreeNode PostOrderTraversal(TreeNode root)
+        {
+            if (root == null)
+                return root;
+
+            PostOrderTraversal(root.left);
+            PostOrderTraversal(root.right);
+            ProcessNode(root);
+
+            return root;
+        }
+
+        public static TreeNode InOrderTraversal(TreeNode root)
+        {
+            if (root == null)
+                return root;
+               
+            PreOrderTraversal(root.left);
+            ProcessNode(root);
+            PreOrderTraversal(root.right);
+
+            return root;
+        }
+
+        public static TreeNode PreOrderTraversal(TreeNode root)
+        {
+            if (root == null)
+                return root;
+
+            ProcessNode(root);
+            PreOrderTraversal(root.left);
+            PreOrderTraversal(root.right);
+
+            return root;
+        }
+
+        public static void ProcessNode(TreeNode node)
+        {
+            //Do whatever we want to do with the node
+            Console.WriteLine(node.val);
         }
 
         //Convert Sorted Array to Binary Search Tree
@@ -106,12 +151,6 @@ namespace LeetCode
 
 
             return max;
-        }
-
-        Console.WriteLine(smallest);
-            Console.WriteLine(largest);
-            return largest - smallest > 0 ? largest - smallest : 0;
-
         }
 
         //BEST TIME TO SELL AND BUY STOCK !!
