@@ -12,13 +12,27 @@ namespace LeetCode
            
         }
 
-        //MERGE TWO TREES
-        //Given two binary trees and imagine that when you put one of them to cover the other, 
-        //some nodes of the two trees are overlapped while the others are not.
-        //You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, 
-        //then sum node values up as the new value of the merged node. Otherwise,
-        //the NOT null node will be used as the node of new tree.
-        public static TreeNode MergeTrees(TreeNode t1, TreeNode t2)
+        public static TreeNode InvertTree(TreeNode root)
+        {
+            if (root == null)
+                return root;
+
+            TreeNode temp = root.left;
+            root.left = root.right;
+            root.right = temp;
+
+            InvertTree(root.left);
+            InvertTree(root.right);
+
+            return root;
+
+            //MERGE TWO TREES
+            //Given two binary trees and imagine that when you put one of them to cover the other, 
+            //some nodes of the two trees are overlapped while the others are not.
+            //You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, 
+            //then sum node values up as the new value of the merged node. Otherwise,
+            //the NOT null node will be used as the node of new tree.
+            public static TreeNode MergeTrees(TreeNode t1, TreeNode t2)
         {
             if (t1 == null)
                 return t2;
