@@ -9,12 +9,79 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            int[] nums = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+           
+        }
 
-            TreeNode node = SortedArrayToBST(nums);
+        //SYMMETRIC TREE (iterative solution)
+        //Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+        public static bool IsSymmetric2(TreeNode root)
+        {
+            if (root == null)
+                return true;
 
-            MaxDepth(node);
+            Queue<TreeNode> left = new Queue<TreeNode>();
+            Queue<TreeNode> right = new Queue<TreeNode>();
 
+            left.Enqueue(root.left);
+            right.Enqueue(root.right);
+
+            while (left.Count > 0 && right.Count > 0)
+            {
+                TreeNode leftN = left.Dequeue();
+                TreeNode rightN = right.Dequeue();
+
+                if (leftN != null && rightN != null && leftN.val == rightN.val)
+                {
+                    left.Enqueue(leftN.left);
+                    left.Enqueue(leftN.right);
+                    right.Enqueue(rightN.right);
+                    right.Enqueue(rightN.left);
+                }
+                else
+                {
+                    if (leftN == null && rightN == null)
+                    {
+                        //do nothing; 
+                        //or can check to see left and right are not empty, then dequeue
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+
+            return true;
+
+        }
+
+        //SYMMETRIC TREE (recursive solution)
+        //Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+        public static bool  IsSymmetric(TreeNode root)
+        {
+            if (root == null)
+                return true;
+
+            return IsSymmetricHelper(root.left, root.right);
+
+
+        }
+
+        public static bool IsSymmetricHelper(TreeNode left, TreeNode right)
+        {
+            if (left != null && right != null && left.val == right.val)
+            {
+                return IsSymmetricHelper(left.left, right.right) && IsSymmetricHelper(left.right, right.left);
+
+            }
+            else
+            {
+                if (left == null && right == null)
+                    return true;
+
+                return false;
+            }
         }
 
         //MAXIUM DEPTH OF BINARY TREE
@@ -27,6 +94,7 @@ namespace LeetCode
  
             return Math.Max(l,r);
         }
+
         public static TreeNode PostOrderTraversal(TreeNode root)
         {
             if (root == null)
