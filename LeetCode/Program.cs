@@ -12,6 +12,33 @@ namespace LeetCode
            
         }
 
+        //FIND ALL NUMBER THAT DISSAPEAR IN AN ARRAY
+        //Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array),
+        //some elements appear twice and others appear once.
+        //Find all the elements of[1, n] inclusive that do not appear in this array.
+        //Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+        public static IList<int> FindDisappearedNumbers(int[] nums)
+        {
+            IList<int> result = new List<int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int temp = Math.Abs(nums[i]);   //num[i] may have been negated
+
+                if (nums[temp - 1] >= 0)
+                    nums[temp - 1] *= -1;
+            }
+
+            for (int j = 0; j < nums.Length; j++)
+            {
+                if (nums[j] > 0)
+                    result.Add(j + 1);
+            }
+
+            return result;
+        }
+
+        //Invert Binary Tree
         public static TreeNode InvertTree(TreeNode root)
         {
             if (root == null)
