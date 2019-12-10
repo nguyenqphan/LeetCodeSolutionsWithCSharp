@@ -9,7 +9,21 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
+            
+            int num = 65;
+            char alphabet = Convert.ToChar(num);
+            int test = 701 % 27;
+            System.Console.WriteLine(test);
            
+        }
+
+
+        public string ConvertToTitle(int n)
+        {
+            StringBuilder title = new StringBuilder();
+
+
+            return title.ToString();
         }
 
         //FIND ALL NUMBER THAT DISSAPEAR IN AN ARRAY
@@ -52,7 +66,7 @@ namespace LeetCode
             InvertTree(root.right);
 
             return root;
-
+        }
             //MERGE TWO TREES
             //Given two binary trees and imagine that when you put one of them to cover the other, 
             //some nodes of the two trees are overlapped while the others are not.
