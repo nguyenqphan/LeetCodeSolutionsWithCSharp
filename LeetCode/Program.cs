@@ -9,21 +9,67 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            
-            int num = 65;
-            char alphabet = Convert.ToChar(num);
-            int test = 701 % 27;
-            System.Console.WriteLine(test);
+              
            
         }
 
 
-        public string ConvertToTitle(int n)
+        // CELLS WITH ODD VALUES IN A MATRIX
+        //Given n and m which are the dimensions of a matrix initialized by zeros and given
+        //an array indices where indices[i] = [ri, ci]. For each pair of[ri, ci] you
+        //have to increment all cells in row ri and column ci by 1.
+        //Return the number of cells with odd values in the matrix after applying the increment to all indices.
+
+
+
+        public int OddCells(int n, int m, int[][] indices)
         {
-            StringBuilder title = new StringBuilder();
+            int[,] cells = new int[n, m];
 
+            for (int k = 0; k < indices.Length; k++)
+            {
+                for (int i = 0; i < m; i++)
+                {
+                    cells[indices[k][0], i]++;
+                }
 
-            return title.ToString();
+                for (int j = 0; j < n; j++)
+                {
+                    cells[j, indices[k][1]]++;
+                }
+            }
+
+            int count = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (cells[i, j] % 2 != 0)
+                        count++;
+                }
+            }
+
+            return count;
+        }
+
+        //RANGE SUM OF BST
+        //Given the root node of a binary search tree, return the sum of
+        //values of all nodes with value between L and R(inclusive).
+        //The binary search tree is guaranteed to have unique values.
+
+        public int RangeSumBST(TreeNode root, int L, int R)
+        {
+            if (root == null)
+                return 0;
+
+            if (root.val < L)
+                return RangeSumBST(root.right, L, R);
+
+            if (root.val > R)
+                return RangeSumBST(root.left, L, R);
+
+            return RangeSumBST(root.left, L, R) + RangeSumBST(root.right, L, R) + root.val;
         }
 
         //FIND ALL NUMBER THAT DISSAPEAR IN AN ARRAY
