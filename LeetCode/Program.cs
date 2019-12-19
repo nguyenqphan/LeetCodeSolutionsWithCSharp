@@ -9,8 +9,42 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-              
+            Console.WriteLine(MaxSubArray(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }));
            
+        }
+
+
+        //MAXIMUM SUBARRAY
+        //Given an integer array nums, find the contiguous subarray(containing at least one number)
+        //which has the largest sum and return its sum.
+        public static int MaxSubArray( params int[] nums)
+        {
+            int max = nums[0];
+            int largestSum = nums[0];
+            int sum = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] > max)
+                {
+                    max = nums[i];
+                }
+
+                sum += nums[i];
+
+                if (sum > largestSum)
+                {
+                    largestSum = sum;
+                }
+
+                if (sum < nums[i])
+                {
+                    sum = nums[i];
+                }
+            }
+
+            return Math.Max(max, largestSum);
+
         }
 
         //CLIMBING STAIRS
