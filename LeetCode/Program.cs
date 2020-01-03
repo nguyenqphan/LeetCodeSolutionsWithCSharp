@@ -9,10 +9,28 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(MaxSubArray(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }));
+            
            
         }
 
+        //SEARCH IN A BINARY SEARCH TREE
+        //Given the root node of a binary search tree(BST) and a value.
+        //You need to find the node in the BST that the node's value equals the given value.
+        //Return the subtree rooted with that node. If such node doesn't exist,
+        //you should return NULL.
+        public TreeNode SearchBST(TreeNode root, int val)
+        {
+            if (root == null)
+                return null;
+
+            if (root.val == val)
+                return root;
+
+            if (root.val > val)
+                return SearchBST(root.left, val);
+            else
+                return SearchBST(root.right, val);
+        }
 
         //MAXIMUM SUBARRAY
         //Given an integer array nums, find the contiguous subarray(containing at least one number)
