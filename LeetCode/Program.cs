@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 
@@ -9,8 +10,36 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine(AddBinary("1010", "1011"));
            
+        }
+
+        public static string AddBinary(string a, string b)
+        {
+            char[] first = a.ToCharArray();
+            char[] second = b.ToCharArray();
+            int carry = 0;
+      
+            StringBuilder result = new StringBuilder();
+
+            int aLength = first.Length - 1;
+            int bLength = second.Length - 1;
+
+            while (aLength >= 0 || bLength >= 0 || carry > 0)
+            {
+                int currentA = (aLength >= 0) ? first[aLength] - '0' : 0;
+                int currentB = (bLength >= 0) ? second[bLength] - '0' : 0;
+
+                int sum = (currentA + currentB + carry) % 2;
+                carry = (currentA + currentB + carry) > 1 ? 1 : 0;
+
+                result.Append(sum);
+                aLength--;
+                bLength--;
+            }
+
+            return new string(result.ToString().Reverse().ToArray()); 
+
         }
 
         //SEARCH IN A BINARY SEARCH TREE
