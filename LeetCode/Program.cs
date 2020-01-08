@@ -10,8 +10,32 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(AddBinary("1010", "1011"));
+            
            
+        }
+
+        //SAME TREE
+        //Given two binary trees, write a function to check if they are the same or not.
+        //Two binary trees are considered the same if they are structurally identical
+        //and the nodes have the same value.
+        public static bool IsSameTree(TreeNode p, TreeNode q)
+        {
+            if (p == null && q != null)
+                return false;
+
+            if (p != null && q == null)
+                return false;
+
+            if (q == null && p == null)
+                return true;
+
+            if (q.val != p.val)
+                return false;
+
+            bool sameRight = IsSameTree(p.right, q.right);
+            bool sameLeft = IsSameTree(p.left, q.left);
+
+            return sameRight && sameLeft;
         }
 
         public static string AddBinary(string a, string b)
