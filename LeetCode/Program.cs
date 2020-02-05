@@ -14,6 +14,36 @@ namespace LeetCode
            
         }
 
+        //PASCAL TRIANGLE II
+        //Given a non-negative index k where k ≤ 33,
+        //return the kth index row of the Pascal's triangle.
+        //Note that the row index starts from 0.
+        
+        public static IList<int> GetRow(int rowIndex)
+        {
+            IList<List<int>> pascalTri = new List<List<int>>();
+
+            List<int> newRow = new List<int>();
+            newRow.Add(1);      //special case for top row
+            pascalTri.Add(newRow);
+
+            for (int r = 1; r <= rowIndex; r++)
+            {
+                newRow = new List<int>();
+                newRow.Add(1);  //first element of each row
+                for (int c = 1; c < r; c++)
+                {
+                    //elements in between the first and last of each row
+                    newRow.Add(pascalTri[r - 1][c - 1] + pascalTri[r - 1][c]);
+                }
+
+                newRow.Add(1);  //last element of each row
+                pascalTri.Add(newRow);
+            }
+
+            return pascalTri[rowIndex];
+        }
+
         //SAME TREE
         //Given two binary trees, write a function to check if they are the same or not.
         //Two binary trees are considered the same if they are structurally identical
@@ -33,7 +63,7 @@ namespace LeetCode
                 return false;
 
             bool sameRight = IsSameTree(p.right, q.right);
-            bool sameLeft = IsSameTree(p.left, q.left);
+            bool sameLeft = IsSameTree(p.left,i q.left);
 
             return sameRight && sameLeft;
         }
