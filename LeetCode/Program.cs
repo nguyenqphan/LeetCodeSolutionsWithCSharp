@@ -14,11 +14,29 @@ namespace LeetCode
            
         }
 
+        //PATH SUM
+        //Given a binary tree and a sum, determine if the tree has
+        //a root-to-leaf path such that adding up all the values along
+        //the path equals the given sum.
+        //Note: A leaf is a node with no children.
+        public static bool HasPathSum(TreeNode root, int sum)
+        {
+            if (root == null)
+                return false;
+
+            sum -= root.val;
+
+            if (root.left == null && root.right == null && sum == 0)
+                return true;
+
+            return HasPathSum(root.left, sum) || HasPathSum(root.right, sum);
+        }
+
         //PASCAL TRIANGLE II
         //Given a non-negative index k where k ≤ 33,
         //return the kth index row of the Pascal's triangle.
         //Note that the row index starts from 0.
-        
+
         public static IList<int> GetRow(int rowIndex)
         {
             IList<List<int>> pascalTri = new List<List<int>>();
