@@ -14,6 +14,39 @@ namespace LeetCode
            
         }
 
+        //ISOMORPHIC STRING
+        //Given two strings s and t, determine if they are isomorphic.
+        //Two strings are isomorphic if the characters in s can be replaced to get t.
+        //All occurrences of a character must be replaced with another character
+        //while preserving the order of characters.No two characters may map to
+        //the same character but a character may map to itself.
+
+        public static bool IsIsomorphic(string s, string t)
+        {
+            Dictionary<char, char> chars = new Dictionary<char, char>();
+            if (s == null && t == null)
+                return true;
+
+            char[] first = s.ToCharArray();
+            char[] second = t.ToCharArray();
+            for (int i = 0; i < first.Length; i++)
+            {
+                if (!chars.ContainsKey(first[i]))
+                {
+                    if (chars.ContainsValue(second[i]))
+                        return false;    //each key has a unique value
+                    chars.Add(first[i], second[i]);
+                }
+                else
+                {
+                    if (chars[first[i]] != second[i])
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
         //HAPPY NUMBER
         //Write an algorithm to determine if a number is "happy".
         //A happy number is a number defined by the following process:
