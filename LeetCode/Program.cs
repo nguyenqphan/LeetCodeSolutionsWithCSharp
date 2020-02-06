@@ -14,6 +14,45 @@ namespace LeetCode
            
         }
 
+        //HAPPY NUMBER
+        //Write an algorithm to determine if a number is "happy".
+        //A happy number is a number defined by the following process:
+        //Starting with any positive integer, replace the number by the sum of
+        //the squares of its digits, and repeat the process until the number equals 1
+        //(where it will stay), or it loops endlessly in a cycle which does not include 1.
+        //Those numbers for which this process ends in 1 are happy numbers.
+        public static bool IsHappy(int n)
+        {
+            Dictionary<int, int> sums = new Dictionary<int, int>();
+
+            while (true)
+            {
+                n = SumOfNumberDigits(n);
+                if (n == 1)
+                    return true;
+
+                if (!sums.ContainsValue(n))
+                    sums.Add(n, n);
+                else
+                    break;
+            }
+
+            return false;
+        }
+
+        public static int SumOfNumberDigits(int n)
+        {
+            int sum = 0;
+            while (n > 0)
+            {
+                int remain = n % 10;
+                n = n / 10;
+                sum += remain * remain;
+            }
+
+            return sum;
+        }
+
         //TWO SUM II - INPUT ARRAY IS SORTED
         //Given an array of integers that is already sorted in ascending order,
         //find two numbers such that they add up to a specific target number.
