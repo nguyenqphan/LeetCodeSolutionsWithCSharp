@@ -14,6 +14,18 @@ namespace LeetCode
            
         }
 
+        //LOWEST COMMON ANCESTOR BINARY SEARCH TREE
+        public static TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
+        {
+            if (root.val < p.val && root.val < q.val)
+                root = LowestCommonAncestor(root.right, p, q);
+
+            if (root.val > p.val && root.val > q.val)
+                root = LowestCommonAncestor(root.left, p, q);
+
+            return root;
+        }
+
         //ISOMORPHIC STRING
         //Given two strings s and t, determine if they are isomorphic.
         //Two strings are isomorphic if the characters in s can be replaced to get t.
@@ -180,7 +192,7 @@ namespace LeetCode
                 return false;
 
             bool sameRight = IsSameTree(p.right, q.right);
-            bool sameLeft = IsSameTree(p.left,i q.left);
+            bool sameLeft = IsSameTree(p.left, q.left);
 
             return sameRight && sameLeft;
         }
@@ -818,7 +830,7 @@ namespace LeetCode
 
         You may assume that each input would have exactly one solution, and you may not use the same element twice.*/
 
-        static int[] TwoSum(int[] nums, int target)
+        static int[] TwoSum2(int[] nums, int target)
         {
 
             int[] result = new int[2];
