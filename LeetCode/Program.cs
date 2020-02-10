@@ -13,7 +13,58 @@ namespace LeetCode
     
         }
 
+        //PATH SUM II
+        //Given a binary tree and a sum, find all root-to-leaf paths
+        //where each path's sum equals the given sum.
+        public static IList<IList<int>> PathSum(TreeNode root, int sum)
+        {
 
+            IList<IList<int>> ans = new List<IList<int>>();
+            IList<int> path = new List<int>();
+
+            if (root == null)
+                return ans;
+
+            return PathSumHelperTwo(root, sum, path, ans);
+        }
+
+        public static IList<IList<int>> PathSumHelperTwo(TreeNode root, int sum, IList<int> path, IList<IList<int>> ans)
+        {
+            path.Add(root.val);
+            int newSum = sum - root.val;
+
+            if (root.left == null && root.right == null)
+            {
+                if (newSum == 0)
+                {
+                    // IList<int> p = new List<int>();
+                    // for(int i = 0; i < path.Count; i++)
+                    // {
+                    //     p.Add(path[i]);
+                    // }
+
+                    ans.Add(path.ToList());
+                }
+                return ans;
+            }
+
+            int length = path.Count;
+
+            if (root.left != null)
+            {
+                PathSumHelperTwo(root.left, newSum, path, ans);
+            }
+
+            if (root.right != null)
+            {
+                int l = path.Count;
+                for (int i = l - 1; i >= length; i--)
+                    path.RemoveAt(i);
+                PathSumHelperTwo(root.right, newSum, path, ans);
+            }
+
+            return ans;
+        }
         //REVESRSE VOWELS OF A STRING
         public static string ReverseVowels(string s)
         {
