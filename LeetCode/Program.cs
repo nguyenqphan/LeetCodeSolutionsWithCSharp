@@ -13,6 +13,57 @@ namespace LeetCode
     
         }
 
+        //PATH SUM THREE
+        //You are given a binary tree in which each node contains an integer value.
+        //Find the number of paths that sum to a given value.
+        //The path does not need to start or end at the root or a leaf,
+        //but it must go downwards(traveling only from parent nodes to child nodes).
+        public static int PathSumThree(TreeNode root, int sum)
+        {
+            if (root == null)
+                return 0;
+
+            return PathSumHelperThree(root, sum, 0, new List<int>());
+        }
+
+        public static int PathSumHelperThree(TreeNode root, int sum, int count, List<int> path)
+        {
+            path.Add(root.val);
+
+            int newSum = 0;
+
+            //compute all the sums. Iterate from the newly added node to prevent duplidate results
+            for (int j = path.Count - 1; j >= 0; j--)
+            {
+                newSum += path[j];
+
+                if (newSum == sum)
+                {
+                    count++;
+                }
+            }
+
+            int length = path.Count; //length before adding left or right
+
+            if (root.left != null)
+            {
+                count = PathSumHelperThree(root.left, sum, count, path);
+            }
+
+            if (root.right != null)
+            {
+                int l = path.Count; //length after adding left node
+                for (int i = l - 1; i >= length; i--)
+                {
+                    path.RemoveAt(i);   //remove the left tree
+                }
+
+                count = PathSumHelperThree(root.right, sum, count, path);
+            }
+
+            return count;
+        }
+
         //PATH SUM II
         //Given a binary tree and a sum, find all root-to-leaf paths
         //where each path's sum equals the given sum.
