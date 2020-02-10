@@ -10,8 +10,45 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            
-           
+    
+        }
+
+
+        //REVESRSE VOWELS OF A STRING
+        public static string ReverseVowels(string s)
+        {
+            int first = 0;              //first pointer
+            int last = s.Length - 1;    //last pointer
+
+            char[] c = s.ToCharArray();
+
+            while (first < last)
+            {
+                if (isVowel(c[first]))
+                {
+                    while (last > first)
+                    {
+                        if (isVowel(c[last]))
+                        {
+                            char temp = c[first];
+                            c[first] = c[last];
+                            c[last] = temp;
+                            last--;
+                            break;
+                        }
+                        last--;
+                    }
+                }
+                first++;
+            }
+
+            return new string(c);
+        }
+
+        public static bool isVowel(char c)
+        {
+            return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+                || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
         }
 
         //LOWEST COMMON ANCESTOR BINARY SEARCH TREE
@@ -202,7 +239,7 @@ namespace LeetCode
             char[] first = a.ToCharArray();
             char[] second = b.ToCharArray();
             int carry = 0;
-      
+
             StringBuilder result = new StringBuilder();
 
             int aLength = first.Length - 1;
@@ -221,7 +258,7 @@ namespace LeetCode
                 bLength--;
             }
 
-            return new string(result.ToString().Reverse().ToArray()); 
+            return new string(result.ToString().Reverse().ToArray());
 
         }
 
@@ -247,7 +284,7 @@ namespace LeetCode
         //MAXIMUM SUBARRAY
         //Given an integer array nums, find the contiguous subarray(containing at least one number)
         //which has the largest sum and return its sum.
-        public static int MaxSubArray( params int[] nums)
+        public static int MaxSubArray(params int[] nums)
         {
             int max = nums[0];
             int largestSum = nums[0];
@@ -433,13 +470,13 @@ namespace LeetCode
 
             return root;
         }
-            //MERGE TWO TREES
-            //Given two binary trees and imagine that when you put one of them to cover the other, 
-            //some nodes of the two trees are overlapped while the others are not.
-            //You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, 
-            //then sum node values up as the new value of the merged node. Otherwise,
-            //the NOT null node will be used as the node of new tree.
-            public static TreeNode MergeTrees(TreeNode t1, TreeNode t2)
+        //MERGE TWO TREES
+        //Given two binary trees and imagine that when you put one of them to cover the other, 
+        //some nodes of the two trees are overlapped while the others are not.
+        //You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, 
+        //then sum node values up as the new value of the merged node. Otherwise,
+        //the NOT null node will be used as the node of new tree.
+        public static TreeNode MergeTrees(TreeNode t1, TreeNode t2)
         {
             if (t1 == null)
                 return t2;
@@ -502,7 +539,7 @@ namespace LeetCode
 
         //SYMMETRIC TREE (recursive solution)
         //Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
-        public static bool  IsSymmetric(TreeNode root)
+        public static bool IsSymmetric(TreeNode root)
         {
             if (root == null)
                 return true;
@@ -535,8 +572,8 @@ namespace LeetCode
                 return 0;
             int l = MaxDepth(root.left) + 1;
             int r = MaxDepth(root.right) + 1;
- 
-            return Math.Max(l,r);
+
+            return Math.Max(l, r);
         }
 
         public static TreeNode PostOrderTraversal(TreeNode root)
@@ -555,7 +592,7 @@ namespace LeetCode
         {
             if (root == null)
                 return root;
-               
+
             PreOrderTraversal(root.left);
             ProcessNode(root);
             PreOrderTraversal(root.right);
@@ -810,7 +847,7 @@ namespace LeetCode
          * of '1' bits it has (also known as the Hamming weight).      
          */
         public static int HammingWeight(uint n)
-        {        
+        {
             int count = 0;
 
             while (n > 0)
@@ -1155,23 +1192,23 @@ namespace LeetCode
         public static bool IsPalindrome(string s)
         {
             int length = s.Length - 1;
-          
-            for(int i = 0; i < length; i++ )
+
+            for (int i = 0; i < length; i++)
             {
                 if (!IsValidCharacter(s[i]))
                     continue;
 
-                while(length != i)
+                while (length != i)
                 {
                     if (IsValidCharacter(s[length]))
                         break;
                     length--;
                 }
 
-                if(Char.ToLower(s[i]) != Char.ToLower(s[length]))
+                if (Char.ToLower(s[i]) != Char.ToLower(s[length]))
                 {
                     return false;
-                } 
+                }
                 else
                 {
                     length--;
@@ -1186,20 +1223,20 @@ namespace LeetCode
 
         public static bool IsValidCharacter(char c)
         {
-                
+
             return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9');
         }
 
         //Reverse bits of a given 32 bits unsigned integer.
         public static uint Reverse32Bits(uint num)
-        { 
+        {
             uint result = 0;
 
-            for(int i = 0; i < 32; i++)
+            for (int i = 0; i < 32; i++)
             {
 
                 result = result << 1;
-                if(num % 2 == 0)
+                if (num % 2 == 0)
                 {
                     result = result | 0;
                 }
@@ -1208,7 +1245,7 @@ namespace LeetCode
                     result = result | 1;
                 }
 
-                num /=  2;
+                num /= 2;
             }
 
             return result;
@@ -1221,7 +1258,7 @@ namespace LeetCode
           Since the return type is an integer, the decimal digits are 
           truncated and only the integer part of the result is returned.  
          */
-         //O(n) runtime solution
+        //O(n) runtime solution
         public static int MySqrt(int x)
         {
             if (x < 1)
@@ -1257,18 +1294,18 @@ namespace LeetCode
                 return 1;
 
             int left = 2;
-            int right = x/2;
+            int right = x / 2;
             int mid = (left + right) / 2;
 
-            while(true)
+            while (true)
             {
-                mid =  (right + left) / 2;
+                mid = (right + left) / 2;
 
                 //not mid * mid > x to prevent overflow
-                if (mid > x/mid)
+                if (mid > x / mid)
                 {
-                    right = mid -1 ;
-                   
+                    right = mid - 1;
+
                 }
                 else
                 {
@@ -1276,7 +1313,7 @@ namespace LeetCode
                         return mid;
                     left = mid + 1;
                 }
-                
+
             }
 
         }
@@ -1351,7 +1388,7 @@ namespace LeetCode
 
             int carry;
 
-            while(b != 0)
+            while (b != 0)
             {
                 carry = a & b;
                 a = a ^ b;
@@ -1359,7 +1396,7 @@ namespace LeetCode
                 b = carry << 1;
             }
 
-            return a; 
+            return a;
         }
         /* INTERSECTION OF TWO ARRAY II
         Given two arrays, write a function to compute their intersection.
@@ -1375,15 +1412,15 @@ namespace LeetCode
             int i = 0;
             int j = 0;
 
-            while(i < nums1.Length && j < nums2.Length)
-            { 
-                if(nums1[i] == nums2[j])
+            while (i < nums1.Length && j < nums2.Length)
+            {
+                if (nums1[i] == nums2[j])
                 {
                     results.Add(nums1[i]);
                     i++;
                     j++;
                 }
-                else 
+                else
                 {
                     if (nums1[i] < nums2[j])
                         i++;
@@ -1492,7 +1529,7 @@ namespace LeetCode
         {
             int sum = nums.Length * (nums.Length + 1) / 2; //1 + 2 + 3 +.. + n = n(n+1)/2
 
-            for(int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 sum -= nums[i];
             }
