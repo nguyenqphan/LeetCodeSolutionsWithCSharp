@@ -10,7 +10,49 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-    
+            
+        }
+
+        //COUNT AND SAY (Refer to LeetCode for the problem discription)
+        public static string CountAndSay(int n)
+        {
+            string ans = "1";
+
+            for (int i = 2; i <= n; i++)
+            {
+                ans = CountAndSayHelper(ans);
+            }
+
+            return ans;
+        }
+
+        public static string CountAndSayHelper(string num)
+        {
+            StringBuilder res = new StringBuilder();
+
+            int count = 0;
+            char val = num[0];
+
+            for (int i = 0; i < num.Length; i++)
+            {
+                if (num[i] == val)
+                {
+                    count++;
+                }
+                else
+                {
+                    res.Append(count);
+                    res.Append(val);
+
+                    count = 1;
+                    val = num[i];
+                }
+            }
+
+            res.Append(count);
+            res.Append(val);    //the last group of a string
+
+            return res.ToString();
         }
 
         //INTERSECTION OF TWO ARRAY OF NUMBERS
@@ -39,7 +81,7 @@ namespace LeetCode
             int[] res = new int[ans.Count];
             ans.CopyTo(res);
             return res;
-
+        }
             //PATH SUM THREE
             //You are given a binary tree in which each node contains an integer value.
             //Find the number of paths that sum to a given value.
