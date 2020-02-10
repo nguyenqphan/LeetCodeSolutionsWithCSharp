@@ -13,12 +13,39 @@ namespace LeetCode
     
         }
 
-        //PATH SUM THREE
-        //You are given a binary tree in which each node contains an integer value.
-        //Find the number of paths that sum to a given value.
-        //The path does not need to start or end at the root or a leaf,
-        //but it must go downwards(traveling only from parent nodes to child nodes).
-        public static int PathSumThree(TreeNode root, int sum)
+        //INTERSECTION OF TWO ARRAY OF NUMBERS
+        public static int[] Intersection(int[] nums1, int[] nums2)
+        {
+
+            HashSet<int> numbers = new HashSet<int>();
+            HashSet<int> ans = new HashSet<int>();
+
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                if (!numbers.Contains(nums1[i]))
+                {
+                    numbers.Add(nums1[i]);
+                }
+            }
+
+            for (int i = 0; i < nums2.Length; i++)
+            {
+                if (numbers.Contains(nums2[i]) && !ans.Contains(nums2[i]))
+                {
+                    ans.Add(nums2[i]);
+                }
+            }
+
+            int[] res = new int[ans.Count];
+            ans.CopyTo(res);
+            return res;
+
+            //PATH SUM THREE
+            //You are given a binary tree in which each node contains an integer value.
+            //Find the number of paths that sum to a given value.
+            //The path does not need to start or end at the root or a leaf,
+            //but it must go downwards(traveling only from parent nodes to child nodes).
+            public static int PathSumThree(TreeNode root, int sum)
         {
             if (root == null)
                 return 0;
