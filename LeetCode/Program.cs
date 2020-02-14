@@ -10,10 +10,50 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-           
 
         }
 
+        //X IS KIND IN A DECK OF CARDS
+        //In a deck of cards, each card has an integer written on it.
+        //Return true if and only if you can choose X >= 2 such that it
+        //is possible to split the entire deck into 1 or more groups of cards, where:
+        //Each group has exactly X cards.
+        //All the cards in each group have the same integer.
+        public static bool HasGroupsSizeX(int[] deck)
+        {
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            for (int i = 0; i < deck.Length; i++)
+            {
+                if (!dict.ContainsKey(deck[i]))
+                    dict.Add(deck[i], 1);
+                else
+                    dict[deck[i]]++;
+            }
+
+            int gcd = 0;
+            foreach (var d in dict)
+            {
+                gcd = GCD(gcd, d.Value);
+                if (gcd < 2)
+                    return false;
+            }
+
+            return true;
+        }
+        //GREATEST COMMON DIVISOR
+        public static int GCD(int a, int b)
+        {
+            if (a == 0)
+                return b;
+            if (b == 0)
+                return a;
+
+            if (a < b)
+                return GCD(a, b % a);
+            else
+                return GCD(a % b, b);        
+        }
 
         //REVERSE ONLY LETTERS
         public static string ReverseOnlyLetters(string S)
