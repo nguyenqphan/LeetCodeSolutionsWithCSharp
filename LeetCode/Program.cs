@@ -10,10 +10,42 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            
+           
+
         }
 
-        //Perfect Square
+
+        //REVERSE ONLY LETTERS
+        public static string ReverseOnlyLetters(string S)
+        {
+            int i = 0;
+            int j = S.Length - 1;
+
+            char[] s = S.ToCharArray();
+
+            while (i < j)
+            {
+                if (Char.IsLetter(s[i]))
+                {
+                    if (Char.IsLetter(s[j]))
+                    {
+                        char temp = s[i];
+                        s[i] = s[j];
+                        s[j] = temp;
+                        i++;
+                    }
+
+                    j--;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            return new string(s);
+        }
+        //Perfect Square 
         public static bool IsPerfectSquare(int num)
         {
             if (num == 1)
