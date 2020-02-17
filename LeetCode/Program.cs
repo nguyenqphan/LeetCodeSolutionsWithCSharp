@@ -13,6 +13,30 @@ namespace LeetCode
 
         }
 
+        //LONGEST WORDS IN A DICTIONARY
+        //Given a list of strings words representing an English Dictionary,
+        //find the longest word in words that can be built one character at a
+        //time by other words in words.If there is more than one possible answer,
+        //return the longest word with the smallest lexicographical order.
+        //If there is no answer, return the empty string.
+        public string LongestWord(string[] words)
+        {
+            Array.Sort(words);
+            string res = "";
+
+            HashSet<string> hashSet = new HashSet<string>();
+            foreach (string e in words)
+            {
+                if (hashSet.Contains(e.Substring(0, e.Length - 1)) || e.Length == 1)
+                {
+                    res = res.Length >= e.Length ? res : e;
+                    hashSet.Add(e);
+                }
+            }
+
+            return res;
+        }
+
         //X IS KIND IN A DECK OF CARDS
         //In a deck of cards, each card has an integer written on it.
         //Return true if and only if you can choose X >= 2 such that it
