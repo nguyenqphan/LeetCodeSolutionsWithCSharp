@@ -13,13 +13,51 @@ namespace LeetCode
 
         }
 
+        //ISLAND PERIMETER
+        //You are given a map in form of a two-dimensional integer grid where 1 represents
+        //land and 0 represents water.
+        //Grid cells are connected horizontally/vertically (not diagonally).
+        //The grid is completely surrounded by water, and there is exactly
+        //one island (i.e., one or more connected land cells).
+        //The island doesn't have "lakes" (water inside that isn't connected to
+        //the water around the island). One cell is a square with side length 1.
+        //The grid is rectangular, width and height don't exceed 100.
+        //Determine the perimeter of the island.
+        public static int IslandPerimeter(int[][] grid)
+        {
+            int count = 0; //count the number of edges that are surrounded by water
+
+            for (int row = 0; row < grid.Length; row++)
+            {
+                for (int col = 0; col < grid[row].Length; col++)
+                {
+                    if (grid[row][col] == 1)
+                    {
+                        if (col == 0 || grid[row][col - 1] == 0) //left
+                            count++;
+
+                        if (col == grid[row].Length - 1 || grid[row][col + 1] == 0) //right
+                            count++;
+
+                        if (row == 0 || grid[row - 1][col] == 0) //up
+                            count++;
+
+                        if (row == grid.Length - 1 || grid[row + 1][col] == 0)//bottom
+                            count++;
+
+                    }
+                }
+            }
+
+            return count;
+        }
         //LONGEST WORDS IN A DICTIONARY
         //Given a list of strings words representing an English Dictionary,
         //find the longest word in words that can be built one character at a
         //time by other words in words.If there is more than one possible answer,
         //return the longest word with the smallest lexicographical order.
         //If there is no answer, return the empty string.
-        public string LongestWord(string[] words)
+        public static string LongestWord(string[] words)
         {
             Array.Sort(words);
             string res = "";
