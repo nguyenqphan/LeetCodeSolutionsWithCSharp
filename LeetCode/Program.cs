@@ -13,6 +13,45 @@ namespace LeetCode
 
         }
 
+        //K-DIFF PAIRS IN AN ARRAY
+        //Given an array of integers and an integer k, you need to find the
+        //number of unique k-diff pairs in the array.Here a k-diff pair
+        //is defined as an integer pair (i, j), where i and j are both
+        //numbers in the array and their absolute difference is k.
+        public static int FindPairs(int[] nums, int k)
+        {
+            if (k < 0)
+                return 0;
+
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            int count = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!dict.ContainsKey(nums[i]))
+                    dict.Add(nums[i], 1);
+                else
+                    dict[nums[i]]++;
+            }
+
+            foreach (var n in dict)
+            {
+                if (k == 0)
+                {
+                    if (dict[n.Key] >= 2)
+                        count++;
+                }
+                else
+                {
+                    if (dict.ContainsKey(n.Key + k))
+                        count++;
+                }
+            }
+
+            return count;
+
+        }
+
         //ISLAND PERIMETER
         //You are given a map in form of a two-dimensional integer grid where 1 represents
         //land and 0 represents water.
