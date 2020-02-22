@@ -13,6 +13,49 @@ namespace LeetCode
 
         }
 
+        //MAXIMUM DISTANCE TO THE CLOSEST PERSON
+        //In a row of seats, 1 represents a person sitting in that seat,
+        //and 0 represents that the seat is empty.
+        //There is at least one empty seat, and at least one person sitting.
+        //Alex wants to sit in the seat such that the distance between him
+        //and the closest person to him is maximized
+        //Return that maximum distance to closest person.
+
+        public static int MaxDistToClosest(int[] seats)
+        {
+            int i = 0;
+            int j = i;
+            int temp = 0;
+            int count = 0;
+
+            while (j < seats.Length)
+            {
+                if (seats[j] == 0)
+                {
+                    temp++;
+                    if (j == seats.Length - 1)
+                    {
+                        count = Math.Max(temp, count);
+                        break;
+                    }
+                    j++;
+                }
+                else
+                {
+                    if (i == 0)
+                        count = Math.Max(temp, count);
+                    else
+                        count = Math.Max((temp + 1) / 2, count);
+
+                    temp = 0;
+                    j++;
+                    i = j;
+                }
+            }
+
+            return count;
+        }
+
         //K-DIFF PAIRS IN AN ARRAY
         //Given an array of integers and an integer k, you need to find the
         //number of unique k-diff pairs in the array.Here a k-diff pair
