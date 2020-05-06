@@ -13,6 +13,55 @@ namespace LeetCode
 
         }
 
+        //FIND COMMON CHARACTERS
+        //Given an array A of strings made only from lowercase letters,
+        //return a list of all characters that show up in all strings within the list
+        //(including duplicates). For Example, if a character occurs three times in all strings
+        //but not 4 times, you need to include that character 3 times in the final answer.
+        public static IList<string> CommonChars(string[] A)
+        {
+            if (A.Length == 0)
+                return null;
+            int num = 97;
+            Console.WriteLine((char)num);
+
+            IList<string> res = new List<string>();
+
+            int[] letters = new int[26];
+
+            for (int i = 0; i < A[0].Length; i++)
+            {
+                letters[A[0][i] - 'a']++;
+            }
+
+            for (int i = 1; i < A.Length; i++)
+            {
+                int[] temp = new int[26];
+
+                for (int j = 0; j < A[0].Length; j++)
+                {
+                    temp[A[i][j] - 'a']++;
+                }
+
+                for (int k = 0; k < 26; k++)
+                {
+                    if (letters[k] > temp[k])
+                        letters[k] = temp[k];
+                }
+            }
+
+            for (int i = 0; i < 26; i++)
+            {
+                while (letters[i] > 0)
+                {
+                    res.Add(((char)(i + 97)).ToString());
+                    letters[i]--;
+                }
+            }
+
+            return res;
+        }
+
         //BINARY TREE TILT
         //Given a binary tree, return the tilt of the whole tree.
         //the tilt of the tree node is defined as the difference between of
