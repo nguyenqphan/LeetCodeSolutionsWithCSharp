@@ -13,6 +13,31 @@ namespace LeetCode
 
         }
 
+        //BINARY TREE TILT
+        //Given a binary tree, return the tilt of the whole tree.
+        //the tilt of the tree node is defined as the difference between of
+        //all the left subtree node values and the sum of all right subtree node
+        //values. Null node has tilt 0.
+        //The tilt of the whole tree is defined as the sum of all nodes' tilt
+        public static int FindTilt(TreeNode root)
+        {
+            int tilt = 0;
+            FindTiltHelper(root, ref tilt);
+            return tilt;
+        }
+
+        public static int FindTiltHelper(TreeNode root, ref int tilt)
+        {
+            if (root == null)
+                return 0;
+
+            int leftSum = FindTiltHelper(root.left, ref tilt);
+            int rightSum = FindTiltHelper(root.right, ref tilt);
+
+            tilt += Math.Abs(leftSum - rightSum);
+            return leftSum + rightSum + root.val;
+        }
+
         //MAXIMUM DISTANCE TO THE CLOSEST PERSON
         //In a row of seats, 1 represents a person sitting in that seat,
         //and 0 represents that the seat is empty.
