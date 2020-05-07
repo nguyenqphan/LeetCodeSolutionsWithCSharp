@@ -13,12 +13,41 @@ namespace LeetCode
 
         }
 
+        //FIND N UNIQUE INTEGERS SUM UP TO ZERO
+        //Given an integer n, return an array containing n unique integers such
+        //that they add up to 0
+        public static int[] SumZero(int n)
+        {
+            int[] res = new int[n];
+            int j = 0;
+            if (n % 2 != 0)
+            {
+                res[0] = 0;
+
+                for (int i = 1; i <= n / 2; i++)
+                {
+                    res[i] = i;
+                    res[n - i] = -i;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < n / 2; i++)
+                {
+                    res[i] = i + 1;
+                    res[n - (i + 1)] = -(i + 1);
+                }
+            }
+
+            return res;
+        }
+
         //FIND LUCKY NUMBER IN AN ARRAY
         //Given an array of integers arr, a lucky number is an integer which has
         //a frequency in the array equal to its value.
         //Return a lucky integer in the array, if there are multiple lucky numbers
         //return the largest of them. If there is no lucky number return -1
-        
+
         public static int FindLucky(int[] arr)
         {
             int[] frequency = new int[500];
