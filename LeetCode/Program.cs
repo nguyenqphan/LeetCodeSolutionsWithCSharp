@@ -13,6 +13,31 @@ namespace LeetCode
 
         }
 
+        //FIND LUCKY NUMBER IN AN ARRAY
+        //Given an array of integers arr, a lucky number is an integer which has
+        //a frequency in the array equal to its value.
+        //Return a lucky integer in the array, if there are multiple lucky numbers
+        //return the largest of them. If there is no lucky number return -1
+        
+        public static int FindLucky(int[] arr)
+        {
+            int[] frequency = new int[500];
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                frequency[arr[i]]++;
+            }
+
+            int max = -1;
+            for (int i = arr.Length - 1; i > 0; i--)
+            {
+                if (arr[i] == frequency[arr[i]])
+                    max = Math.Max(max, arr[i]);
+            }
+
+            return max;
+        }
+
         //FIND COMMON CHARACTERS
         //Given an array A of strings made only from lowercase letters,
         //return a list of all characters that show up in all strings within the list
