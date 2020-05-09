@@ -13,6 +13,43 @@ namespace LeetCode
 
         }
 
+        //ADD TO ARRAY-FORM OF INTEGER
+        //For a non-negative integer x, the array-form of x is an array of its digits in the
+        //left to right order. For example, if x = 1231, then the array form is [1,2,3,1]
+        //Given the array form A of a non-negative integer x, return the array-form of the integer x + k
+        public static IList<int> AddToArrayForm(int[] A, int K)
+        {
+            IList<int> temp = new List<int>();
+            IList<int> res = new List<int>();
+
+            int carry = 0;
+            int remainder = 0;
+            int index = A.Length - 1;
+            int digit = 0;
+
+            while (index >= 0 || K > 0)
+            {
+                remainder = K % 10;
+                K = K / 10;
+                digit = index >= 0 ? A[index] : 0;
+                int currValue = digit + remainder + carry;
+                carry = currValue / 10;
+
+                temp.Add(currValue % 10);
+                index--;
+            }
+
+            if (carry == 1)
+                temp.Add(carry);
+
+            for (int i = temp.Count - 1; i >= 0; i--)
+            {
+                res.Add(temp[i]);
+            }
+
+            return res;
+        }
+
         //FIND N UNIQUE INTEGERS SUM UP TO ZERO
         //Given an integer n, return an array containing n unique integers such
         //that they add up to 0
