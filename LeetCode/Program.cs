@@ -13,6 +13,34 @@ namespace LeetCode
 
         }
 
+        //AVERAGE LEVELS IN BINARY TREE
+        public static IList<double> AverageOfLevels(TreeNode root)
+        {
+            IList<double> res = new List<double>();
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                int length = queue.Count;
+                double sum = 0;
+                for (int i = 0; i < length; i++)
+                {
+                    TreeNode node = queue.Dequeue();
+                    if (node.left != null)
+                        queue.Enqueue(node.left);
+
+                    if (node.right != null)
+                        queue.Enqueue(node.right);
+
+                    sum += node.val;
+                }
+
+                res.Add(sum / length);
+            }
+
+            return res;
+        }
         //ADD TO ARRAY-FORM OF INTEGER
         //For a non-negative integer x, the array-form of x is an array of its digits in the
         //left to right order. For example, if x = 1231, then the array form is [1,2,3,1]
