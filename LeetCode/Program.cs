@@ -10,10 +10,37 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
+            
+        }
 
+        //BASE 7
+        public static string ConvertToBase7(int num)
+        {
+            StringBuilder sb = new StringBuilder();
+            bool neg = false;
+            if (num < 0)
+            {
+                neg = true;
+                num *= -1;
+            }
+            else if (num == 0)
+                sb.Append("0");
+
+
+            while (num != 0)
+            {
+                int remain = num % 7;
+
+                sb.Insert(0, remain);
+                num /= 7;
+            }
+
+            return neg ? sb.Insert(0, "-").ToString() : sb.ToString();
         }
 
         //AVERAGE LEVELS IN BINARY TREE
+        //Given a non-empty binary tree, returnt he average value of the node on each
+        //level in the form of an array
         public static IList<double> AverageOfLevels(TreeNode root)
         {
             IList<double> res = new List<double>();
