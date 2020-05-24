@@ -13,6 +13,40 @@ namespace LeetCode
             
         }
 
+        //BINARY TREE LEVEL ORDER TRAVERSAL
+        //Given a binary tree, return the level order traversal of its node's value(from left to right, level by level)
+        public static IList<IList<int>> LevelOrder(TreeNode root)
+        {
+
+            IList<IList<int>> res = new List<IList<int>>();
+
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                IList<int> level = new List<int>();
+                int quantity = queue.Count;
+                for (int i = 0; i < quantity; i++)
+                {
+                    TreeNode temp = queue.Dequeue();
+                    if (temp != null)
+                        level.Add(temp.val);
+
+                    if (temp != null && temp.left != null)
+                        queue.Enqueue(temp.left);
+
+                    if (temp != null && temp.right != null)
+                        queue.Enqueue(temp.right);
+                }
+
+                if (level.Count > 0)
+                    res.Add(level);
+            }
+
+            return res;
+        }
+
         //BASE 7
         public static string ConvertToBase7(int num)
         {
