@@ -13,6 +13,44 @@ namespace LeetCode
             
         }
 
+        //BINARY TREE ZIGZAG LEVEL ORDER TRAVERSAL
+        //Given a binary tree, return the zigzag level order traversal of its nodes values
+        //(from left to right, then right to left for the next level and alternate between them)
+        public static IList<IList<int>> ZigzagLevelOrder(TreeNode root)
+        {
+            IList<IList<int>> res = new List<IList<int>>();
+            Queue<TreeNode> nodes = new Queue<TreeNode>();
+
+            nodes.Enqueue(root);
+            bool leftToRight = false;
+            while (nodes.Count > 0)
+            {
+                IList<int> level = new List<int>();
+                int quantity = nodes.Count;
+
+                for (int i = 0; i < quantity; i++)
+                {
+                    TreeNode temp = nodes.Dequeue();
+                    if (temp != null)
+                    {
+                        if (leftToRight)
+                            level.Insert(0, temp.val);
+                        else
+                            level.Insert(level.Count, temp.val);
+                        if (temp.left != null)
+                            nodes.Enqueue(temp.left);
+                        if (temp.right != null)
+                            nodes.Enqueue(temp.right);
+                    }
+                }
+                if (level.Count > 0)
+                    res.Add(level);
+                leftToRight = !leftToRight;
+            }
+
+            return res;
+        }
+
         //BINARY TREE LEVEL ORDER TRAVERSAL
         //Given a binary tree, return the level order traversal of its node's value(from left to right, level by level)
         public static IList<IList<int>> LevelOrder(TreeNode root)
