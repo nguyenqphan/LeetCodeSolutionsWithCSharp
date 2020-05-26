@@ -13,6 +13,36 @@ namespace LeetCode
             
         }
 
+        //CONSTRUCT A TREE FROM PREORDER AND INORDER TRAVERSAL
+        public static TreeNode BuildTree(int[] preorder, int[] inorder)
+        {
+            return BuildTreeHelper(0, preorder.Length - 1, 0, preorder, inorder);
+        }
+
+        public static TreeNode  BuildTreeHelper(int left, int right, int root, int[] preorder, int[] inorder)
+        {
+            if (left > right || root >= inorder.Length)
+            {
+                return null;
+            }
+
+            TreeNode node = new TreeNode(preorder[root]);
+
+            int target = 0;
+            for (int i = left; i <= right; i++)
+            {
+                if (inorder[i] == preorder[root])
+                {
+                    target = i;
+                    break;
+                }
+            }
+
+            node.left = BuildTreeHelper(left, target - 1, root + 1, preorder, inorder);
+            node.right = BuildTreeHelper(target + 1, right, root + 1 + target - left, preorder, inorder);
+
+            return node;
+        }
         //BINARY TREE ZIGZAG LEVEL ORDER TRAVERSAL
         //Given a binary tree, return the zigzag level order traversal of its nodes values
         //(from left to right, then right to left for the next level and alternate between them)
