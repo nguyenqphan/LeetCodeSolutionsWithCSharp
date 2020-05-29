@@ -13,6 +13,36 @@ namespace LeetCode
             
         }
 
+        //CONSTRUCT FROM BINARY TREE FROM INORDER AND POSTORDER TRAVERSAL
+        public static TreeNode BuildTreeInorderPostorder(int[] inorder, int[] postorder)
+        {
+            return BuildTreeHelperInorderPostOrder(0, inorder.Length - 1, postorder.Length - 1, inorder, postorder);
+        }
+
+        public static TreeNode BuildTreeHelperInorderPostOrder(int inEnd, int inStart, int postStart, int[] inorder, int[] postorder)
+        {
+            if (postStart < 0 || inStart < inEnd)
+                return null;
+
+            TreeNode node = new TreeNode(postorder[postStart]);
+
+            int rIndex = 0;
+
+            for (int i = inStart; i >= inEnd; i--)
+            {
+                if (postorder[postStart] == inorder[i])
+                {
+                    rIndex = i;
+                    break;
+                }
+            }
+
+            node.right = BuildTreeHelperInorderPostOrder(rIndex + 1, inStart, postStart - 1, inorder, postorder);
+            node.left = BuildTreeHelperInorderPostOrder(inEnd, rIndex - 1, postStart - (inStart - rIndex) - 1, inorder, postorder);
+
+            return node;
+        }
+
         //CONSTRUCT A TREE FROM PREORDER AND INORDER TRAVERSAL
         public static TreeNode BuildTree(int[] preorder, int[] inorder)
         {
