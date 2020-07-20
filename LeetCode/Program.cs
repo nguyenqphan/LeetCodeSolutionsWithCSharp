@@ -13,6 +13,44 @@ namespace LeetCode
             
         }
 
+        //LONGEST PALINDROMIC SUBSTRING - MEDIUM
+        //Given a string s, find the longest palindromic substring in s.You may assume that the maximum length of s is 1000.
+        public static string LongestPalindrome(string s)
+        {
+            if (s == null || s.Length < 1)
+                return "";
+
+            int start = 0;
+            int max = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                int len1 = PalindromeLength(s, i, i);
+                int len2 = PalindromeLength(s, i, i + 1);
+                int temp = Math.Max(len1, len2);
+
+                if (temp > max)
+                {
+                    max = temp;
+                    start = i - (max - 1) / 2;
+                }
+
+            }
+
+            return s.Substring(start, max);
+        }
+
+        public static int PalindromeLength(string s, int left, int right)
+        {
+            while (left >= 0 && right < s.Length && s[left] == s[right])
+            {
+                left--;
+                right++;
+            }
+
+            return right - left - 1;
+        }
+
         //CONSTRUCT FROM BINARY TREE FROM INORDER AND POSTORDER TRAVERSAL
         public static TreeNode BuildTreeInorderPostorder(int[] inorder, int[] postorder)
         {
