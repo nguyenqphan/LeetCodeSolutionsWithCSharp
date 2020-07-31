@@ -13,6 +13,49 @@ namespace LeetCode
             
         }
 
+
+        //REPEATEDSUBSTRINGPATTERN
+        //Given a non-empty string s, check if it can be constructed by taking a substring of it and append multiple copies of
+        //the substring together. You may assume the string contain the lowercase English only and its length will not exceed 1000.
+        public static bool RepeatedSubstringPattern(string s)
+        {
+
+            for (int l = 1; l <= s.Length / 2; l++)
+            {
+                if (RepeatedSubStringPatternHelper(s, l))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool RepeatedSubStringPatternHelper(string s, int length)
+        {
+            if ((s.Length) % length != 0)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                int j = i + length;
+                while (j < s.Length)
+                {
+                    if (s[i] != s[j])
+                    {
+                        return false;
+                    }
+
+                    j += length;
+                }
+
+            }
+
+            return true;
+        }
+
         //LONGEST PALINDROMIC SUBSTRING - MEDIUM
         //Given a string s, find the longest palindromic substring in s.You may assume that the maximum length of s is 1000.
         public static string LongestPalindrome(string s)
