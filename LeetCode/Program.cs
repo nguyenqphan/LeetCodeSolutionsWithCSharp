@@ -10,9 +10,26 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            
+
         }
 
+        //HAMMING DISTANCE
+        //Given a hamming distance between two integer numbers is the number of positions at which corresponding bits are different.
+        //Given two integer x and y, calculate the hamming distance
+        public static int HammingDistance(int x, int y)
+        {
+
+            int count = 0;
+            while (x != 0 || y != 0)
+            {
+                int temp = x ^ y;
+                count += temp % 2 != 0 ? 1 : 0;
+                x = x >> 1;
+                y = y >> 1;
+            }
+
+            return count;
+        }
 
         //REPEATEDSUBSTRINGPATTERN
         //Given a non-empty string s, check if it can be constructed by taking a substring of it and append multiple copies of
