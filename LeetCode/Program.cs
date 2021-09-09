@@ -11,7 +11,28 @@ namespace LeetCode
         static void Main(string[] args)
         {
 
+       
         }
+
+      
+
+        public static List<int> SumRecursion(int[] nums, int n)
+        {
+            if (n == 0)
+                return new List<int>();
+
+            List<int> res = new List<int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                res = SumRecursion(nums, n - 1);
+                res.Add(i);
+            }
+
+            
+            return res;
+        }
+
 
         //HAMMING DISTANCE
         //Given a hamming distance between two integer numbers is the number of positions at which corresponding bits are different.
