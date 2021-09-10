@@ -14,6 +14,49 @@ namespace LeetCode
        
         }
 
+        //527. NUMBER OF PROVINCE - MEDIUM - USING DISJOIN SET
+        public static int FindCircleNum(int[][] M)
+        {
+            int[] parent = new int[M.Length];
+            for (int i = 0; i < parent.Length; i++)
+                parent[i] = -1;
+
+            for (int i = 0; i < M.Length; i++)
+            {
+                for (int j = 0; j < M.Length; j++)
+                {
+                    if (M[i][j] == 1 && i != j)
+                    {
+                        Union(parent, i, j);
+                    }
+                }
+            }
+            int count = 0;
+            for (int i = 0; i < parent.Length; i++)
+            {
+                if (parent[i] == -1)
+                    count++;
+            }
+
+            return count;
+        }
+
+        public static void Union(int[] parent, int i, int j)
+        {
+            int rootI = Find(parent, i);
+            int rootJ = Find(parent, j);
+
+            if (rootI != rootJ)
+                parent[rootI] = rootJ;
+        }
+
+        public static int Find(int[] parent, int i)
+        {
+            if (parent[i] == -1)
+                return i;
+            return Find(parent, parent[i]);
+        }
+
         //323. Number of connected components in a grapth - medium
         public static int CountComponents(int n, int[][] edges)
         {
