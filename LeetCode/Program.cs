@@ -14,25 +14,44 @@ namespace LeetCode
        
         }
 
-      
-
-        public static List<int> SumRecursion(int[] nums, int n)
+        //261. GRAPH VALID TREE - MEDIUM
+        public static bool ValidTree(int n, int[][] edges)
         {
-            if (n == 0)
-                return new List<int>();
+            //A valid tree if number of edges == n - 1 and all nodes are visited after BDS or DFS. 
+            if (edges.Length != n - 1)
+                return false;
 
-            List<int> res = new List<int>();
+            List<List<int>> adjacencies = new List<List<int>>();
 
-            for (int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < n; i++)
+                adjacencies.Add(new List<int>());
+
+            foreach (var edge in edges)
             {
-                res = SumRecursion(nums, n - 1);
-                res.Add(i);
+                adjacencies[edge[0]].Add(edge[1]);
+                adjacencies[edge[1]].Add(edge[0]);
             }
 
-            
-            return res;
-        }
+            Stack<int> st = new Stack<int>();
+            HashSet<int> seen = new HashSet<int>();
+            st.Push(0);
+            seen.Add(0);
 
+            while (st.Count > 0)
+            {
+                int curr = st.Pop();
+                foreach (var item in adjacencies[curr])
+                {
+                    if (!seen.Contains(item))
+                    {
+                        st.Push(item);
+                        seen.Add(item);
+                    }
+                }
+            }
+
+            return seen.Count == n;
+        }
 
         //HAMMING DISTANCE
         //Given a hamming distance between two integer numbers is the number of positions at which corresponding bits are different.
