@@ -14,6 +14,50 @@ namespace LeetCode
        
         }
 
+        //323. Number of connected components in a grapth - medium
+        public static int CountComponents(int n, int[][] edges)
+        {
+            List<List<int>> adjacencies = new List<List<int>>();
+
+            for (int i = 0; i < n; i++)
+                adjacencies.Add(new List<int>());
+
+            foreach (var e in edges)
+            {
+                adjacencies[e[0]].Add(e[1]);
+                adjacencies[e[1]].Add(e[0]);
+            }
+
+            Stack<int> st = new Stack<int>();
+            HashSet<int> seen = new HashSet<int>();
+
+            int count = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (!seen.Contains(i))
+                {
+                    st.Push(i);
+                    count++;
+                    seen.Add(i);
+                    while (st.Count > 0)
+                    {
+                        int curr = st.Pop();
+                        for (int j = 0; j < adjacencies[curr].Count; j++)
+                        {
+                            int connected = adjacencies[curr][j];
+                            if (!seen.Contains(connected))
+                            {
+                                st.Push(connected);
+                                seen.Add(connected);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return count;
+        }
+
         //261. GRAPH VALID TREE - MEDIUM
         public static bool ValidTree(int n, int[][] edges)
         {
