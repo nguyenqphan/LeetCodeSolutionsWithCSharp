@@ -14,6 +14,39 @@ namespace LeetCode
        
         }
 
+
+        //797. ALL PATHS FROM SOURCE TO TARGET - MEDIUM
+        public static IList<IList<int>> AllPathsSourceTarget(int[][] graph)
+        {
+            IList<IList<int>> res = new List<IList<int>>();
+            IList<int> path = new List<int>();
+
+            int target = graph.Length - 1;
+            int curr = 0;
+            path.Add(curr);
+
+            BackTrack(graph, path, curr, target, res);
+
+            return res;
+        }
+
+        public static void BackTrack(int[][] graph, IList<int> path, int curr, int target, IList<IList<int>> res)
+        {
+            if (curr == target)
+            {
+                res.Add(new List<int>(path));
+                return;
+            }
+
+            for (int i = 0; i < graph[curr].Length; i++)
+            {
+                int temp = graph[curr][i];
+                path.Add(temp);
+                BackTrack(graph, path, temp, target, res);
+                path.RemoveAt(path.Count - 1);
+            }
+        }
+
         //527. NUMBER OF PROVINCE - MEDIUM - USING DISJOIN SET
         public static int FindCircleNum(int[][] M)
         {
