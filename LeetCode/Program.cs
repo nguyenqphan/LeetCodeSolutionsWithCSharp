@@ -14,6 +14,58 @@ namespace LeetCode
        
         }
 
+        //1091. Shortest Path in Binary Matrix - MEDIUM - USING QUEUE FOR BFS
+        public static int ShortestPathBinaryMatrix(int[][] grid)
+        {
+            if (grid[0][0] == 1 || grid[grid.Length - 1][grid.Length - 1] == 1)
+                return -1;
+
+            int[][] directions = new int[][]{new int[]{1,  1},
+                                        new int[]{-1, 1},
+                                        new int[]{1, -1},
+                                        new int[]{-1,-1},
+                                        new int[]{1,  0},
+                                        new int[]{-1, 0},
+                                        new int[]{0,  1},
+                                        new int[]{0, -1}
+                                       };
+
+
+            Queue<int[]> q = new Queue<int[]>();
+            q.Enqueue(new int[] { 0, 0 });
+            HashSet<int[]> seen = new HashSet<int[]>();
+            int count = 0;
+            int[] target = new int[] { grid.Length - 1, grid.Length - 1 };
+            grid[0][0] = 1; //mark this cell as visited instead of using a HashSet for this problem;
+
+            while (q.Count > 0)
+            {
+                int size = q.Count;
+                count++;
+
+                for (int i = 0; i < size; i++)
+                {
+                    int[] pair = q.Dequeue();
+                    int row = pair[0];
+                    int col = pair[1];
+                    if (row == target[0] && col == target[1])
+                        return count;
+                    foreach (var d in directions)
+                    {
+                        int newRow = row + d[0];
+                        int newCol = col + d[1];
+                        if (newRow >= 0 && newRow <= target[0] && newCol >= 0 && newCol <= target[1] && grid[newRow][newCol] == 0)
+                        {
+                            q.Enqueue(new int[] { newRow, newCol });
+                            grid[newRow][newCol] = 1;
+                        }
+                    }
+                }
+            }
+
+            return -1;
+        }
+
         //1059. ALL PATHS FROM SOURCE LEAD TO DESTINATION - MEDIUM - DFS, CYCLE DETECTION WITH COLORS
         public  enum Color { WHITE, GRAY, BLACK };
         public static bool LeadsToDestination(int n, int[][] edges, int source, int destination)
