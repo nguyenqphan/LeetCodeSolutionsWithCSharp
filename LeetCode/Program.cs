@@ -14,6 +14,54 @@ namespace LeetCode
        
         }
 
+        //1059. ALL PATHS FROM SOURCE LEAD TO DESTINATION - MEDIUM - DFS, CYCLE DETECTION WITH COLORS
+        public  enum Color { WHITE, GRAY, BLACK };
+        public static bool LeadsToDestination(int n, int[][] edges, int source, int destination)
+        {
+            List<int>[] graph = BuildDigraph(n, edges);
+            Color[] states = new Color[n];
+            for (int i = 0; i < states.Length; i++)
+            {
+                states[i] = Color.WHITE;
+            }
+
+            return LeadsToDest(graph, source, destination, states);
+        }
+
+        public static bool LeadsToDest(List<int>[] graph, int node, int dest, Color[] states)
+        {
+            if (states[node] != Color.WHITE)
+                return states[node] == Color.BLACK;
+
+            if (graph[node].Count == 0)
+                return node == dest;
+
+            states[node] = Color.GRAY;
+            foreach (var next in graph[node])
+            {
+                if (!LeadsToDest(graph, next, dest, states))
+                    return false;
+            }
+
+            states[node] = Color.BLACK;
+
+            return true;
+
+        }
+
+        public static List<int>[] BuildDigraph(int n, int[][] edges)
+        {
+            List<int>[] graph = new List<int>[n];
+            for (int i = 0; i < n; i++)
+            {
+                graph[i] = new List<int>();
+            }
+
+            foreach (var e in edges)
+                graph[e[0]].Add(e[1]);
+
+            return graph;
+        }
 
         //797. ALL PATHS FROM SOURCE TO TARGET - MEDIUM
         public static IList<IList<int>> AllPathsSourceTarget(int[][] graph)
