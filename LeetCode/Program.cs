@@ -14,6 +14,61 @@ namespace LeetCode
        
         }
 
+
+        //994. ROTTING ORANGES - MEDIUM - BFS WITH QUEUE
+        public static int OrangesRotting(int[][] grid)
+        {
+
+            Queue<int[]> q = new Queue<int[]>();
+            int count = 0;
+            int minute = -1;
+            for (int i = 0; i < grid.Length; i++)
+            {
+                for (int j = 0; j < grid[i].Length; j++)
+                {
+
+                    if (grid[i][j] != 0)
+                        count++;
+                    if (grid[i][j] == 2)
+                        q.Enqueue(new int[] { i, j });
+                }
+            }
+
+            int[][] dirs = new int[][]{ new int[]{-1, 0},
+                                    new int[]{1, 0},
+                                    new int[]{0, 1},
+                                    new int[]{0, -1},
+                                  };
+
+            if (count == 0)
+                return 0;
+            while (q.Count > 0)
+            {
+                int size = q.Count;
+                minute++;
+                for (int i = size; i > 0; i--)
+                {
+                    int[] pos = q.Dequeue();
+                    count--;
+                    int row = pos[0];
+                    int col = pos[1];
+
+                    foreach (var d in dirs)
+                    {
+                        int newRow = row + d[0];
+                        int newCol = col + d[1];
+                        if (newRow >= 0 && newRow < grid.Length && newCol >= 0 && newCol < grid[newRow].Length && grid[newRow][newCol] == 1)
+                        {
+                            q.Enqueue(new int[] { newRow, newCol });
+                            grid[newRow][newCol] = 2;
+                        }
+                    }
+                }
+            }
+
+            return count != 0 ? -1 : minute;
+        }
+
         //1091. Shortest Path in Binary Matrix - MEDIUM - USING QUEUE FOR BFS
         public static int ShortestPathBinaryMatrix(int[][] grid)
         {
