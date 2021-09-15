@@ -1,8 +1,15 @@
 ﻿<Properties StartupConfiguration="{6FA780B4-A94D-469E-B0D1-7EB5FAAAA71C}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="LeetCode/Program.cs">
     <Files>
-      <File FileName="LeetCode/Program.cs" Line="14" Column="8" />
+      <File FileName="LeetCode/Program.cs" Line="65" Column="23" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LeetCode" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.LeetCode PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

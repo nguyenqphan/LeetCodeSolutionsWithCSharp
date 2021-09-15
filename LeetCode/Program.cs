@@ -10,10 +10,65 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-
+            
        
         }
 
+
+        //1101. THE EARLIEST MOMENT EVERYONE BECOMES FRIENDS - MEDIUM- UNION FIND AND RANK
+        public static int EarliestAcq(int[][] logs, int n)
+        {
+            Array.Sort(logs, (x, y) => x[0].CompareTo(y[0]));
+
+            int count = n - 1;
+            int[] parent = new int[n];
+            int[] rank = new int[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                rank[i] = 1;
+                parent[i] = i;
+            }
+            for (int i = 0; i < logs.Length; i++)
+            {
+                Union(parent, logs[i][1], logs[i][2], ref count, rank);
+                if (count == 0)
+                    return logs[i][0];
+            }
+
+            return -1;
+        }
+
+        public static void Union(int[] parent, int x, int y, ref int count, int[] rank)
+        {
+            int rootX = FindRoot(parent, x);
+            int rootY = FindRoot(parent, y);
+            if (rootX != rootY)
+            {
+                count--;
+
+                if (rank[rootX] > rank[rootY])
+                {
+                    parent[rootY] = rootX;
+                }
+                else
+                    if (rank[rootX] < rank[rootY])
+                    parent[rootX] = rootY;
+                else
+                {
+                    rank[rootX]++;
+                    parent[rootY] = rootX;
+                }
+            }
+        }
+
+        public static int FindRoot(int[] parent, int x)
+        {
+            if (x == parent[x])
+                return x;
+            else
+                return parent[x] = FindRoot(parent, parent[x]);
+        }
 
         //994. ROTTING ORANGES - MEDIUM - BFS WITH QUEUE
         public static int OrangesRotting(int[][] grid)
